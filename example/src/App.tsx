@@ -1,20 +1,17 @@
-import { Text, View, StyleSheet } from 'react-native';
-import { multiply } from 'vital-react-native';
-
-const result = multiply(3, 7);
+import {Text, View, StyleSheet} from "react-native";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <Text>Result: 5</Text>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+    },
 });

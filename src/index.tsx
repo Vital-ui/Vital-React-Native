@@ -1,5 +1,98 @@
-import VitalReactNative from './NativeVitalReactNative';
+import {NativeModules} from "react-native";
+import {margin} from "./components/spacing/margin";
+import {padding} from "./components/spacing/padding";
+import {borderRadius} from "./components/border/borderRadius";
+import {height} from "./components/height/height";
+import {width} from "./components/width/width";
+import {fontSize} from "./components/typography/fontSize";
+import GradientText from "./components/typography/GradientText";
+import Display1 from "./components/typography/display1";
+import Display2 from "./components/typography/display2";
+import Display3 from "./components/typography/display3";
+import Display4 from "./components/typography/display4";
+import Display5 from "./components/typography/display5";
+import Display6 from "./components/typography/display6";
+import H1 from "./components/typography/h1";
+import H2 from "./components/typography/h2";
+import H3 from "./components/typography/h3";
+import H4 from "./components/typography/h4";
+import H5 from "./components/typography/h5";
+import H6 from "./components/typography/h6";
+import H7 from "./components/typography/h7";
+import H8 from "./components/typography/h8";
+import H9 from "./components/typography/h9";
+import Container from "./components/container/container";
+import Accordion from "./components/accordion/accordion";
+import GradientImage from "./components/gradientImage/gradientImage";
+import GradientBlock from "./components/gradientBlock/gradientBlock";
+import Block from "./components/block/block";
+import Checkbox from "./components/checkbox/checkbox";
+import RadioButton from "./components/radioButton/radioButton";
+import Button from "./components/button/button";
+import Carousel from "./components/carousel/carousel";
+import Input from "./components/input/input";
+import OTPInput from "./components/otp/otp";
+import Dialog from "./components/dialog/dialog";
+import AppProvider from "./components/appProvider/appProvider";
+import BadgeButton from "./components/badgeButton/badgeButton";
+import ProgressBar from "./components/progressBar/ProgressBar";
+import Switch from "./components/switch/Switch";
+import Toast from "./components/toast/toast";
+import Drawer from "./components/drawer/drawer";
+import SegmentedTab from "./components/segmentedTab/segmentedTab";
+import Calender from "./components/calender/calender";
+import Slider from "./components/slider/Slider";
+import Header from "./components/header/Header";
 
-export function multiply(a: number, b: number): number {
-  return VitalReactNative.multiply(a, b);
-}
+const {ScreenOrientation, Insets, InAppExperience, NavigationBar} = NativeModules;
+
+export {
+    margin,
+    padding,
+    borderRadius,
+    height,
+    width,
+    fontSize,
+    GradientText,
+    Display1,
+    Display2,
+    Display3,
+    Display4,
+    Display5,
+    Display6,
+    H1,
+    H2,
+    H3,
+    H4,
+    H5,
+    H6,
+    H7,
+    H8,
+    H9,
+    Container,
+    Calender,
+    Accordion,
+    GradientImage,
+    GradientBlock,
+    Block,
+    Checkbox,
+    RadioButton,
+    Button,
+    BadgeButton,
+    Carousel,
+    Input,
+    OTPInput,
+    Dialog,
+    AppProvider,
+    ProgressBar,
+    Switch,
+    Toast,
+    Drawer,
+    SegmentedTab,
+    Slider,
+    Header,
+    ScreenOrientation,
+    Insets,
+    InAppExperience,
+    NavigationBar
+};
