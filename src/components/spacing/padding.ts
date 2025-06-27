@@ -1,6 +1,5 @@
-import {Dimensions, StyleSheet} from "react-native";
-
-const height = Dimensions.get("screen").width <= 545 ? Dimensions.get("screen").height : Dimensions.get("screen").height * 1.2;
+import {StyleSheet} from "react-native";
+import {rem, BASE_SPACING} from '../typography/config';
 
 export const padding = StyleSheet.create({
     // Padding 0 Style
@@ -27,112 +26,112 @@ export const padding = StyleSheet.create({
     },
     // Padding 1 Style
     p1: {
-        padding: height * 0.005,
+        padding: rem(BASE_SPACING), // 4px
     },
     px1: {
-        paddingHorizontal: height * 0.005,
+        paddingHorizontal: rem(BASE_SPACING),
     },
     py1: {
-        paddingVertical: height * 0.005,
+        paddingVertical: rem(BASE_SPACING),
     },
     pt1: {
-        paddingTop: height * 0.005,
+        paddingTop: rem(BASE_SPACING),
     },
     pb1: {
-        paddingBottom: height * 0.005,
+        paddingBottom: rem(BASE_SPACING),
     },
     ps1: {
-        paddingStart: height * 0.005,
+        paddingStart: rem(BASE_SPACING),
     },
     pe1: {
-        paddingEnd: height * 0.005,
+        paddingEnd: rem(BASE_SPACING),
     },
     // Padding 2 Style
     p2: {
-        padding: height * 0.01,
+        padding: rem(BASE_SPACING * 2), // 8px
     },
     px2: {
-        paddingHorizontal: height * 0.01,
+        paddingHorizontal: rem(BASE_SPACING * 2),
     },
     py2: {
-        paddingVertical: height * 0.01,
+        paddingVertical: rem(BASE_SPACING * 2),
     },
     pt2: {
-        paddingTop: height * 0.01,
+        paddingTop: rem(BASE_SPACING * 2),
     },
     pb2: {
-        paddingBottom: height * 0.01,
+        paddingBottom: rem(BASE_SPACING * 2),
     },
     ps2: {
-        paddingStart: height * 0.01,
+        paddingStart: rem(BASE_SPACING * 2),
     },
     pe2: {
-        paddingEnd: height * 0.01,
+        paddingEnd: rem(BASE_SPACING * 2),
     },
     // Padding 3 Style
     p3: {
-        padding: height * 0.015,
+        padding: rem(BASE_SPACING * 3), // 12px
     },
     px3: {
-        paddingHorizontal: height * 0.015,
+        paddingHorizontal: rem(BASE_SPACING * 3),
     },
     py3: {
-        paddingVertical: height * 0.015,
+        paddingVertical: rem(BASE_SPACING * 3),
     },
     pt3: {
-        paddingTop: height * 0.015,
+        paddingTop: rem(BASE_SPACING * 3),
     },
     pb3: {
-        paddingBottom: height * 0.015,
+        paddingBottom: rem(BASE_SPACING * 3),
     },
     ps3: {
-        paddingStart: height * 0.015,
+        paddingStart: rem(BASE_SPACING * 3),
     },
     pe3: {
-        paddingEnd: height * 0.015,
+        paddingEnd: rem(BASE_SPACING * 3),
     },
     // Padding 4 Style
     p4: {
-        padding: height * 0.02,
+        padding: rem(BASE_SPACING * 4), // 16px
     },
     px4: {
-        paddingHorizontal: height * 0.02,
+        paddingHorizontal: rem(BASE_SPACING * 4),
     },
     py4: {
-        paddingVertical: height * 0.02,
+        paddingVertical: rem(BASE_SPACING * 4),
     },
     pt4: {
-        paddingTop: height * 0.02,
+        paddingTop: rem(BASE_SPACING * 4),
     },
     pb4: {
-        paddingBottom: height * 0.02,
+        paddingBottom: rem(BASE_SPACING * 4),
     },
     ps4: {
-        paddingStart: height * 0.02,
+        paddingStart: rem(BASE_SPACING * 4),
     },
     pe4: {
-        paddingEnd: height * 0.02,
+        paddingEnd: rem(BASE_SPACING * 4),
     },
     // Padding 5 Style
     p5: {
-        padding: height * 0.03,
+        padding: rem(BASE_SPACING * 5), // 24px
     },
     px5: {
-        paddingHorizontal: height * 0.03,
+        paddingHorizontal: rem(BASE_SPACING * 5),
     },
     py5: {
-        paddingVertical: height * 0.03,
+        paddingVertical: rem(BASE_SPACING * 5),
     },
     pt5: {
-        paddingTop: height * 0.03,
+        paddingTop: rem(BASE_SPACING * 5),
     },
     pb5: {
-        paddingBottom: height * 0.03,
+        paddingBottom: rem(BASE_SPACING * 5),
     },
     ps5: {
-        paddingStart: height * 0.03,
+        paddingStart: rem(BASE_SPACING * 5),
     },
     pe5: {
-        paddingEnd: height * 0.03,
+        paddingEnd: rem(BASE_SPACING * 5),
     },
 });

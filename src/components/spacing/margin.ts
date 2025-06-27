@@ -1,6 +1,5 @@
-import {Dimensions, StyleSheet} from "react-native";
-
-const height = Dimensions.get("screen").width <= 545 ? Dimensions.get("screen").height : Dimensions.get("screen").height * 1.2;
+import {StyleSheet} from "react-native";
+import {rem, BASE_SPACING} from '../typography/config';
 
 export const margin = StyleSheet.create({
     // Margin 0 Style
@@ -27,112 +26,112 @@ export const margin = StyleSheet.create({
     },
     // Margin 1 Style
     m1: {
-        margin: height * 0.005,
+        margin: rem(BASE_SPACING), // 4px
     },
     mx1: {
-        marginHorizontal: height * 0.005,
+        marginHorizontal: rem(BASE_SPACING),
     },
     my1: {
-        marginVertical: height * 0.005,
+        marginVertical: rem(BASE_SPACING),
     },
     mt1: {
-        marginTop: height * 0.005,
+        marginTop: rem(BASE_SPACING),
     },
     mb1: {
-        marginBottom: height * 0.005,
+        marginBottom: rem(BASE_SPACING),
     },
     ms1: {
-        marginStart: height * 0.005,
+        marginStart: rem(BASE_SPACING),
     },
     me1: {
-        marginEnd: height * 0.005,
+        marginEnd: rem(BASE_SPACING),
     },
     // Margin 2 Style
     m2: {
-        margin: height * 0.01,
+        margin: rem(BASE_SPACING * 2), // 8px
     },
     mx2: {
-        marginHorizontal: height * 0.01,
+        marginHorizontal: rem(BASE_SPACING * 2),
     },
     my2: {
-        marginVertical: height * 0.01,
+        marginVertical: rem(BASE_SPACING * 2),
     },
     mt2: {
-        marginTop: height * 0.01,
+        marginTop: rem(BASE_SPACING * 2),
     },
     mb2: {
-        marginBottom: height * 0.01,
+        marginBottom: rem(BASE_SPACING * 2),
     },
     ms2: {
-        marginStart: height * 0.01,
+        marginStart: rem(BASE_SPACING * 2),
     },
     me2: {
-        marginEnd: height * 0.01,
+        marginEnd: rem(BASE_SPACING * 2),
     },
     // Margin 3 Style
     m3: {
-        margin: height * 0.015,
+        margin: rem(BASE_SPACING * 3), // 12px
     },
     mx3: {
-        marginHorizontal: height * 0.015,
+        marginHorizontal: rem(BASE_SPACING * 3),
     },
     my3: {
-        marginVertical: height * 0.015,
+        marginVertical: rem(BASE_SPACING * 3),
     },
     mt3: {
-        marginTop: height * 0.015,
+        marginTop: rem(BASE_SPACING * 3),
     },
     mb3: {
-        marginBottom: height * 0.015,
+        marginBottom: rem(BASE_SPACING * 3),
     },
     ms3: {
-        marginStart: height * 0.015,
+        marginStart: rem(BASE_SPACING * 3),
     },
     me3: {
-        marginEnd: height * 0.015,
+        marginEnd: rem(BASE_SPACING * 3),
     },
     // Margin 4 Style
     m4: {
-        margin: height * 0.02,
+        margin: rem(BASE_SPACING * 4), // 16px
     },
     mx4: {
-        marginHorizontal: height * 0.02,
+        marginHorizontal: rem(BASE_SPACING * 4),
     },
     my4: {
-        marginVertical: height * 0.02,
+        marginVertical: rem(BASE_SPACING * 4),
     },
     mt4: {
-        marginTop: height * 0.02,
+        marginTop: rem(BASE_SPACING * 4),
     },
     mb4: {
-        marginBottom: height * 0.02,
+        marginBottom: rem(BASE_SPACING * 4),
     },
     ms4: {
-        marginStart: height * 0.02,
+        marginStart: rem(BASE_SPACING * 4),
     },
     me4: {
-        marginEnd: height * 0.02,
+        marginEnd: rem(BASE_SPACING * 4),
     },
     // Margin 5 Style
     m5: {
-        margin: height * 0.03,
+        margin: rem(BASE_SPACING * 5), // 24px
     },
     mx5: {
-        marginHorizontal: height * 0.03,
+        marginHorizontal: rem(BASE_SPACING * 5),
     },
     my5: {
-        marginVertical: height * 0.03,
+        marginVertical: rem(BASE_SPACING * 5),
     },
     mt5: {
-        marginTop: height * 0.03,
+        marginTop: rem(BASE_SPACING * 5),
     },
     mb5: {
-        marginBottom: height * 0.03,
+        marginBottom: rem(BASE_SPACING * 5),
     },
     ms5: {
-        marginStart: height * 0.03,
+        marginStart: rem(BASE_SPACING * 5),
     },
     me5: {
-        marginEnd: height * 0.03,
+        marginEnd: rem(BASE_SPACING * 5),
     },
 });

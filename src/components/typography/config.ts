@@ -1,6 +1,7 @@
 import type { TypographyConfig } from "./types";
 
 export const ROOT_FONT_SIZE = 16;
+export const BASE_SPACING = 0.25;
 
 // Default configuration
 export const defaultTypographyConfig: TypographyConfig = {
@@ -32,10 +33,3 @@ export const getRootFontSize = (): number => {
 export const rem = (value: number): number => {
   return typographyConfig.rootFontSize * value;
 }; 
-
-// small test
-
-setTypographyConfig({rootFontSize: 16});
-
-console.log(getRootFontSize());
-console.log(rem(1));
