@@ -1,9 +1,11 @@
-import React from "react";
-import {Text, TextProps} from "react-native";
+import React, { useContext } from "react";
+import {Text as NativeText} from "react-native";
+import type {TextProps} from "react-native";
 import {fontSize} from "./fontSize";
 import ThemeContext from "../context/context";
 
 function H7(props: TextProps) {
+    const theme = useContext(ThemeContext);
     const [txtProps, setProps] = React.useState({});
     React.useEffect(() => {
         if (Object.keys(props).indexOf("style") !== -1) {
@@ -15,13 +17,7 @@ function H7(props: TextProps) {
         }
     }, [props]);
     return (
-        <ThemeContext.Consumer>
-            {
-                (context) => <Text
-                    {...txtProps}
-                    style={[{...context.fontConfig, color: context.theme.TextColor}, fontSize.H7, props.style]}>{props.children}</Text>
-            }
-        </ThemeContext.Consumer>
+        <NativeText {...txtProps} style={[{ ...theme.fontConfig, color: theme.theme.TextColor }, fontSize.H7, props.style]}>{props.children}</NativeText>
     );
 }
 

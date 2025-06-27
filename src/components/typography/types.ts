@@ -5,3 +5,8 @@ export type GradientTextProps = TextProps & {
     start?: { x: number, y: number };
     end?: { x: number, y: number };
 }
+
+// Typography configuration interface
+export interface TypographyConfig {
+    rootFontSize: number;
+  }
