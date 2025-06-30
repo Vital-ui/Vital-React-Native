@@ -1,51 +1,32 @@
-import {Dimensions, StyleSheet} from "react-native";
-
-const width = Dimensions.get("screen").width <= 545 ? Dimensions.get("screen").width : Dimensions.get("screen").width * 0.8;
+import {StyleSheet} from "react-native";
+import {rem} from './config';
 
 export const fontSize = StyleSheet.create({
-    Display1: {
-        fontSize: width * 0.15,
-    },
-    Display2: {
-        fontSize: width * 0.14,
-    },
-    Display3: {
-        fontSize: width * 0.13,
-    },
-    Display4: {
-        fontSize: width * 0.12,
-    },
-    Display5: {
-        fontSize: width * 0.11,
-    },
-    Display6: {
-        fontSize: width * 0.10,
-    },
     H1: {
-        fontSize: width * 0.09,
+        fontSize: rem(2), // 32px - browser default
     },
     H2: {
-        fontSize: width * 0.08,
+        fontSize: rem(1.5), // 24px - browser default
     },
     H3: {
-        fontSize: width * 0.07,
+        fontSize: rem(1.17), // 18.72px - browser default
     },
     H4: {
-        fontSize: width * 0.06,
+        fontSize: rem(1), // 16px - browser default
     },
     H5: {
-        fontSize: width * 0.05,
+        fontSize: rem(0.83), // 13.28px - browser default
     },
     H6: {
-        fontSize: width * 0.045,
+        fontSize: rem(0.67), // 10.72px - browser default
     },
     H7: {
-        fontSize: width * 0.04,
+        fontSize: rem(0.5), // 8px
     },
     H8: {
-        fontSize: width * 0.035,
+        fontSize: rem(0.375), // 6px
     },
     H9: {
-        fontSize: width * 0.03,
+        fontSize: rem(0.25), // 4px
     },
 });

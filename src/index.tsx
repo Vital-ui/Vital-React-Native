@@ -5,13 +5,14 @@ import {borderRadius} from "./components/border/borderRadius";
 import {height} from "./components/height/height";
 import {width} from "./components/width/width";
 import {fontSize} from "./components/typography/fontSize";
+import {
+    setTypographyConfig,
+    getTypographyConfig,
+    resetTypographyConfig,
+    getRootFontSize,
+    rem,
+} from "./components/typography/config";
 import GradientText from "./components/typography/GradientText";
-import Display1 from "./components/typography/display1";
-import Display2 from "./components/typography/display2";
-import Display3 from "./components/typography/display3";
-import Display4 from "./components/typography/display4";
-import Display5 from "./components/typography/display5";
-import Display6 from "./components/typography/display6";
 import H1 from "./components/typography/h1";
 import H2 from "./components/typography/h2";
 import H3 from "./components/typography/h3";
@@ -53,13 +54,12 @@ export {
     height,
     width,
     fontSize,
+    setTypographyConfig,
+    getTypographyConfig,
+    resetTypographyConfig,
+    getRootFontSize,
+    rem,
     GradientText,
-    Display1,
-    Display2,
-    Display3,
-    Display4,
-    Display5,
-    Display6,
     H1,
     H2,
     H3,
