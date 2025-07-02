@@ -6,11 +6,11 @@ import {height} from "./components/height/height";
 import {width} from "./components/width/width";
 import {fontSize} from "./components/typography/fontSize";
 import {
-    setTypographyConfig,
-    getTypographyConfig,
-    resetTypographyConfig,
     getRootFontSize,
+    getTypographyConfig,
     rem,
+    resetTypographyConfig,
+    setTypographyConfig,
 } from "./components/typography/config";
 import GradientText from "./components/typography/GradientText";
 import H1 from "./components/typography/h1";
@@ -30,7 +30,7 @@ import Block from "./components/block/block";
 import Checkbox from "./components/checkbox/checkbox";
 import RadioButton from "./components/radioButton/radioButton";
 import Button from "./components/button/button";
-import Carousel from "./components/carousel/carousel";
+import Carousel from "./components/carousel";
 import Input from "./components/input/input";
 import OTPInput from "./components/otp/otp";
 import Dialog from "./components/dialog/dialog";
@@ -45,7 +45,8 @@ import Calender from "./components/calender/calender";
 import Slider from "./components/slider/Slider";
 import Header from "./components/header/Header";
 
-const {ScreenOrientation, Insets, InAppExperience, NavigationBar} = NativeModules;
+const {ScreenOrientation, Insets, InAppExperience, NavigationBar} =
+    NativeModules;
 
 export {
     margin,
@@ -94,5 +95,5 @@ export {
     ScreenOrientation,
     Insets,
     InAppExperience,
-    NavigationBar
+    NavigationBar,
 };
