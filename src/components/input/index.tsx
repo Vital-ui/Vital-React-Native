@@ -13,6 +13,7 @@ import SVGEyeClose from "./eye-slash-fill.svg";
 import ThemeContext from "../context/context";
 import type {InputProps} from "./types";
 import Animated, {Easing, useAnimatedStyle, useSharedValue, withTiming} from "react-native-reanimated";
+import ComponentStyles from "./styles";
 
 export default function Input(props: InputProps) {
     const context = React.useContext(ThemeContext);
@@ -119,6 +120,8 @@ export default function Input(props: InputProps) {
             }),
         };
     });
+    
+    
     return (
         <View style={[props.inputStyle, props.borderRadius]} onLayout={onLayout2}>
             <LinearGradient
@@ -127,14 +130,14 @@ export default function Input(props: InputProps) {
                 style={[{padding: 1, overflow: "hidden"}, props.borderRadius]}
             >
                 <View
-                    style={[styles.inputBlock, props.borderRadius, {backgroundColor: bgColor ? bgColor : context.theme.Theme}]}>
+                    style={[ComponentStyles.inputBlock, props.borderRadius, {backgroundColor: bgColor ? bgColor : context.theme.Theme}]}>
                     {
                         props.inputLeft &&
-                        <View style={styles.inputLeft}>
+                        <View style={ComponentStyles.inputLeft}>
                             {props.inputLeft}
                         </View>
                     }
-                    <View style={[{flex: 1}, styles.inputBlock, props.floatingPlaceholderProps?.containerStyle]}>
+                    <View style={[{flex: 1}, ComponentStyles.inputBlock, props.floatingPlaceholderProps?.containerStyle]}>
                         {
                             props.floatingPlaceholder && <Animated.View style={[placeholderStyle]} onLayout={onLayout}>
                                 <Animated.Text style={[{
@@ -148,7 +151,7 @@ export default function Input(props: InputProps) {
                                 {
                                     ...context.fontConfig,
                                     color: context.theme.TextColor
-                                }, styles.inputData, props.textStyle, props.borderRadius,
+                                }, ComponentStyles.inputData, props.textStyle, props.borderRadius,
                                 props.floatingPlaceholder ? {marginTop: 7} : {},
                                 props.multiline && props.numberOfLines && props.numberOfLines > 0 ?
                                     {minHeight: (Platform.OS === 'ios') ? (20 * props.numberOfLines) : undefined}
@@ -174,7 +177,7 @@ export default function Input(props: InputProps) {
                     {
                         props.secureTextEntry &&
                         <Pressable
-                            style={styles.inputRight}
+                            style={ComponentStyles.inputRight}
                             onPress={() => setSecureTextEntry(!secureTextEntry)}>
                             {secureTextEntry
                                 ? <SVGEyeClose fill={"#888888"} height={20} width={20}/>
@@ -184,7 +187,7 @@ export default function Input(props: InputProps) {
                     }
                     {
                         props.inputRight &&
-                        <View style={styles.inputRight}>
+                        <View style={ComponentStyles.inputRight}>
                             {props.inputRight}
                         </View>
                     }
@@ -195,25 +198,4 @@ export default function Input(props: InputProps) {
     );
 }
 
-const styles = StyleSheet.create({
-    inputBlock: {
-        flexDirection: "row",
-        alignItems: "center"
-    },
-    inputLeft: {
-        justifyContent: "center",
-        alignItems: "center",
-        paddingRight: 5,
-        paddingLeft: 10
-    },
-    inputRight: {
-        justifyContent: "center",
-        alignItems: "center",
-        paddingRight: 10,
-        paddingLeft: 5
-    },
-    inputData: {
-        flex: 1,
-        backgroundColor: "transparent"
-    }
-});
+

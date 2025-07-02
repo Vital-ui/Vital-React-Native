@@ -1,7 +1,7 @@
 import type React from "react";
-import type {StyleProp, TextInput, TextInputProps, TextStyle, ViewStyle} from "react-native";
+import type { StyleProp, TextInput, TextInputProps, TextStyle, ViewStyle } from "react-native";
 
-export type InputProps = TextInputProps  &{
+export type InputProps = TextInputProps & {
     ref?: React.Ref<TextInput>;
     inputStyle?: StyleProp<ViewStyle>;
     textStyle?: StyleProp<TextStyle>;
@@ -16,7 +16,7 @@ export type InputProps = TextInputProps  &{
     feedback?: React.ReactChild | React.ReactFragment;
     floatingPlaceholder?: boolean
     floatingPlaceholderProps?: {
-        containerStyle?:StyleProp<ViewStyle>,
+        containerStyle?: StyleProp<ViewStyle>,
         fontSize?: number,
         activeFontSize?: number,
         textStyle?: StyleProp<TextStyle>
