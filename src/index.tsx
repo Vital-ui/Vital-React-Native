@@ -29,7 +29,7 @@ import GradientBlock from "./components/gradientBlock/gradientBlock";
 import Block from "./components/block/block";
 import Checkbox from "./components/checkbox/checkbox";
 import RadioButton from "./components/radioButton/radioButton";
-import Button from "./components/button/button";
+import Button from "./components/button";
 import Carousel from "./components/carousel/carousel";
 import Input from "./components/input/input";
 import OTPInput from "./components/otp/otp";

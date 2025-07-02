@@ -1,6 +1,6 @@
 import React from "react";
 import {Dimensions, Pressable, View} from "react-native";
-import Button from "../button/button";
+import Button from "../button";
 import {borderRadius} from "../border/borderRadius";
 import {themeState} from "../context/initialState";
 import type {BadgeButtonType} from "./types";
