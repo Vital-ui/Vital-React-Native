@@ -1,6 +1,10 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+    inputWrapper: {
+        padding: 1,
+        overflow: "hidden"
+    },
     inputBlock: {
         flexDirection: "row",
         alignItems: "center"

@@ -1,37 +1,36 @@
 import React from "react";
-import Animated, { Easing, withTiming } from "react-native-reanimated";
-import type { ViewStyle, TextStyle } from "react-native";
+import Animated, { Easing, SharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
+import type { ViewStyle, TextStyle, ColorValue, LayoutChangeEvent } from "react-native";
+import ThemeContext from "@/components/context/context";
 
 interface FloatingPlaceholderProps {
     placeholder?: string;
-    placeholderTextColor?: string;
+    placeholderTextColor?: ColorValue | undefined;
     floatingPlaceholderProps?: {
         textStyle?: TextStyle;
         containerStyle?: ViewStyle;
         fontSize?: number;
         activeFontSize?: number;
     };
-    context: any;
-    inFocus: any;
-    actualValue: any;
-    height: number;
-    height2: number;
-    onLayout: (event: any) => void;
-    useAnimatedStyle: any;
+    inFocus: SharedValue<boolean>;
+    actualValue: string | undefined;
+    wrapperHeight: number;
 }
 
 export default function FloatingPlaceholder({
     placeholder,
     placeholderTextColor,
     floatingPlaceholderProps,
-    context,
     inFocus,
     actualValue,
-    height,
-    height2,
-    onLayout,
-    useAnimatedStyle
+    wrapperHeight,
 }: FloatingPlaceholderProps) {
+    const context = React.useContext(ThemeContext);
+    const [height, setHeight] = React.useState(20);
+    const onLayout = (event: LayoutChangeEvent) => {
+        setHeight(event.nativeEvent.layout.height);
+    };
+
     const placeholderStyle = useAnimatedStyle(() => {
         return {
 
@@ -42,13 +41,13 @@ export default function FloatingPlaceholder({
             }),
             top: "50%",
             transform: [{
-                translateY: withTiming(inFocus.value || actualValue ? (-1 * height2 / 2) + 3 : -1 * height / 2, {
+                translateY: withTiming(inFocus.value || actualValue ? (-1 * wrapperHeight / 2) + 3 : -1 * height / 2, {
                     duration: 100,
                     easing: Easing.out(Easing.quad),
                 })
             }]
         };
-    }, [inFocus, height, height2, actualValue]);
+    }, [inFocus, height, wrapperHeight, actualValue]);
 
     const placeholderFontStyle = useAnimatedStyle(() => {
         const animatedFontSize = inFocus.value || actualValue ? floatingPlaceholderProps?.activeFontSize ? floatingPlaceholderProps?.activeFontSize : 12 : floatingPlaceholderProps?.fontSize ? floatingPlaceholderProps?.fontSize : 16;
@@ -59,10 +58,19 @@ export default function FloatingPlaceholder({
 
     return (
         <Animated.View style={[placeholderStyle]} onLayout={onLayout}>
-            <Animated.Text style={[{
-                ...context.fontConfig,
-                color: placeholderTextColor ? placeholderTextColor : context.theme.TextColor
-            }, floatingPlaceholderProps?.textStyle, placeholderFontStyle]}>{placeholder}</Animated.Text>
+            <Animated.Text
+                allowFontScaling={false}
+                style={[
+                    {
+                        ...context.fontConfig,
+                        color: placeholderTextColor ? placeholderTextColor : context.theme.TextColor,
+                    },
+                    floatingPlaceholderProps?.textStyle,
+                    placeholderFontStyle
+                ]}
+            >
+                {placeholder}
+            </Animated.Text>
         </Animated.View>
     );
-} 
+}   

@@ -4,124 +4,102 @@ import type { NativeSyntheticEvent, TextInputFocusEventData } from "react-native
 import LinearGradient from "react-native-linear-gradient";
 import ThemeContext from "../context/context";
 import type { InputProps } from "./types";
-import { useAnimatedStyle, useSharedValue } from "react-native-reanimated";
+import { SharedValue,  useSharedValue } from "react-native-reanimated";
 import ComponentStyles from "./styles";
 import FloatingPlaceholder from "./components/FloatingPlaceholder";
-import InputLeft from "./components/InputLeft";
-import InputRight from "./components/InputRight";
+import InputAddon from "./components/InputAddon";
 import PasswordToggle from "./components/PasswordToggle";
 
 export default function Input(props: InputProps) {
     const context = React.useContext(ThemeContext);
-    const inFocus = useSharedValue(false);
+    const inFocus: SharedValue<boolean> = useSharedValue(false);
     const [value, setValue] = React.useState(props.defaultValue ? props.defaultValue : props.value);
     const [secureTextEntry, setSecureTextEntry] = React.useState(false);
     const [color, setColor] = React.useState<[string, string]>();
-    const [bgColor, setBGColor] = React.useState(props.bgColor);
-    const [inputProps, setProps] = React.useState({});
-    const [height, setHeight] = React.useState(20);
-    const [height2, setHeight2] = React.useState(20);
+    const [bgColor, setBGColor] = React.useState(props.styles?.background?.color);
+    const [wrapperHeight, setWrapperHeight] = React.useState(20);
+
+    const borderColor = props.styles?.border?.color;
+    const onFocusBorderColor = props.styles?.border?.onFocusColor;
+    const borderRadius = props.styles?.border?.radius;
 
     const actualValue = props.value === undefined ? value : props.value;
 
+    // Filter out custom props to pass only native TextInput props
+    const {
+        styles,
+        secureTextEntry: propSecureTextEntry,
+        addons,
+        placeholder,
+        feedback,
+        onFocus,
+        onBlur,
+        ...textInputProps
+    } = props;
+
     React.useEffect(() => {
-        onBlur();
+        onBlurHandler();
     }, []);
-    React.useEffect(() => {
-        const temp : InputProps = { ...props };
-        const keys = Object.keys(temp);
-        const tbd: string[] = [
-            "textStyle",
-            "inputStyle",
-            "borderColor",
-            "bgColor",
-            "onFocusBorderColor",
-            "onFocusBGColor",
-            "secureTextEntry",
-            "feedback",
-            "onFocus",
-            "onBlur",
-            "inputLeft",
-            "inputRight",
-            "borderRadius",
-            "floatingPlaceholder"
-        ];
-        if (props.floatingPlaceholder) {
-            tbd.push("placeholder");
-            tbd.push("placeholderTextColor");
-        }
-        for (const key in tbd) {
-            if (keys.indexOf(tbd[key] as string) !== -1) {
-                delete temp[tbd[key] as keyof typeof temp];
-            }
-        }
-        setProps(temp);
-    }, [props]);
-    const onFocus = (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    
+    const onFocusHandler = (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
         inFocus.value = true;
-        if (props.onFocusBorderColor) {
-            if (Array.isArray(props.onFocusBorderColor)) setColor(props.onFocusBorderColor);
-            else setColor([props.onFocusBorderColor, props.onFocusBorderColor]);
+        if (onFocusBorderColor) {
+            if (Array.isArray(onFocusBorderColor)) setColor(onFocusBorderColor);
+            else setColor([onFocusBorderColor, onFocusBorderColor]);
         }
-        if (props.onFocusBGColor) {
-            setBGColor(props.onFocusBGColor);
+        if (props.styles?.background?.onFocusColor) {
+            setBGColor(props.styles.background.onFocusColor);
         }
-        if (props.onFocus) {
-            props.onFocus(event);
+        if (onFocus) {
+            onFocus(event);
         }
     };
-    const onBlur = (event?: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    const onBlurHandler = (event?: NativeSyntheticEvent<TextInputFocusEventData>) => {
         inFocus.value = false;
-        if (props.borderColor) {
-            if (Array.isArray(props.borderColor)) {
-                setColor(props.borderColor);
+        if (borderColor) {
+            if (Array.isArray(borderColor)) {
+                setColor(borderColor);
             } else {
-                setColor([props.borderColor, props.borderColor]);
+                setColor([borderColor, borderColor]);
             }
         } else {
-            if (props.bgColor) {
-                setColor([props.bgColor, props.bgColor]);
+            if (props.styles?.background?.color) {
+                setColor([props.styles.background.color, props.styles.background.color]);
             }
         }
-        if (props.bgColor) {
-            setBGColor(props.bgColor);
+        if (props.styles?.background?.color) {
+            setBGColor(props.styles.background.color);
         }
-        if (props.onBlur && event) {
-            props.onBlur(event);
+        if (onBlur && event) {
+            onBlur(event);
         }
     };
-    const onLayout = (event: any) => {
-        setHeight(event.nativeEvent.layout.height);
-    };
-    const onLayout2 = (event: any) => {
-        setHeight2(event.nativeEvent.layout.height);
+    []
+    const onWrapperLayout = (event: any) => {
+        setWrapperHeight(event.nativeEvent.layout.height);
     };
 
     return (
-        <View style={[props.inputStyle, props.borderRadius]} onLayout={onLayout2}>
+        <View style={[styles?.wrapper, borderRadius]} onLayout={onWrapperLayout}>
             <LinearGradient
                 colors={color ? color : [context.theme.ThemeMuted, context.theme.ThemeMuted]}
                 start={{ x: 0, y: 1 }}
                 end={{ x: 1, y: 1 }}
-                style={[{ padding: 1, overflow: "hidden" }, props.borderRadius]}
+                style={[ComponentStyles.inputWrapper, borderRadius]}
             >
                 <View
-                    style={[ComponentStyles.inputBlock, props.borderRadius, { backgroundColor: bgColor ? bgColor : context.theme.Theme }]}
+                    style={[ComponentStyles.inputBlock, borderRadius, { backgroundColor: bgColor ? bgColor : context.theme.Theme }, styles?.input]}
                 >
-                    {props.inputLeft && <InputLeft>{props.inputLeft}</InputLeft>}
-                    <View style={[{ flex: 1 }, ComponentStyles.inputBlock, props.floatingPlaceholderProps?.containerStyle]}>
-                        {props.floatingPlaceholder && (
+                    {addons?.left && <InputAddon position="left">{addons.left}</InputAddon>}
+                    <View style={[{ flex: 1 }, ComponentStyles.inputBlock, placeholder?.floatingProps?.containerStyle]}>
+                        {placeholder?.floating && (
                             <FloatingPlaceholder
-                                placeholder={props.placeholder}
-                                placeholderTextColor={props.placeholderTextColor as string | undefined}
-                                floatingPlaceholderProps={props.floatingPlaceholderProps as any}
-                                context={context}
+                                placeholder={placeholder.text}
+                                placeholderTextColor={placeholder.color as string | undefined}
+                                floatingPlaceholderProps={placeholder.floatingProps as any}
                                 inFocus={inFocus}
                                 actualValue={actualValue}
-                                height={height}
-                                height2={height2}
-                                onLayout={onLayout}
-                                useAnimatedStyle={useAnimatedStyle}
+                                wrapperHeight={wrapperHeight}
                             />
                         )}
                         <TextInput
@@ -131,21 +109,22 @@ export default function Input(props: InputProps) {
                                     color: context.theme.TextColor
                                 },
                                 ComponentStyles.inputData,
-                                props.textStyle,
-                                props.borderRadius,
-                                props.floatingPlaceholder ? { marginTop: 7 } : {},
+                                styles?.text,
+                                borderRadius,
+                                placeholder?.floating ? { marginTop: 7 } : {},
                                 props.multiline && props.numberOfLines && props.numberOfLines > 0
                                     ? { minHeight: Platform.OS === "ios" ? 20 * props.numberOfLines : undefined }
                                     : undefined
                             ]}
-                            placeholderTextColor={context.theme.TextColor}
-                            secureTextEntry={props.secureTextEntry && !secureTextEntry}
+                            placeholderTextColor={placeholder?.color || context.theme.TextColor}
+                            secureTextEntry={propSecureTextEntry && !secureTextEntry}
                             autoCapitalize="none"
-                            onBlur={onBlur}
-                            onFocus={onFocus}
-                            {...inputProps}
+                            onBlur={onBlurHandler}
+                            onFocus={onFocusHandler}
+                            {...textInputProps}
                             defaultValue={props.defaultValue}
                             value={actualValue}
+                            placeholder={placeholder?.floating ? undefined : placeholder?.text}
                             onChangeText={(val) => {
                                 if (props.onChangeText) {
                                     props.onChangeText(val);
@@ -154,13 +133,13 @@ export default function Input(props: InputProps) {
                             }}
                         />
                     </View>
-                    {props.secureTextEntry && (
+                    {propSecureTextEntry && (
                         <PasswordToggle secure={secureTextEntry} onPress={() => setSecureTextEntry(!secureTextEntry)} />
                     )}
-                    {props.inputRight && <InputRight>{props.inputRight}</InputRight>}
+                    {addons?.right && <InputAddon position="right">{addons.right}</InputAddon>}
                 </View>
             </LinearGradient>
-            {props.feedback}
+            {feedback?.node}
         </View>
     );
 }

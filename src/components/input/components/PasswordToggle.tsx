@@ -1,12 +1,12 @@
 import React from "react";
-import { Pressable } from "react-native";
+import { GestureResponderEvent, Pressable } from "react-native";
 import SVGEyeOpen from "../assets/eye-fill.svg";
 import SVGEyeClose from "../assets/eye-slash-fill.svg";
 import ComponentStyles from "../styles";
 
 interface PasswordToggleProps {
     secure: boolean;
-    onPress: () => void;
+    onPress: (event: GestureResponderEvent) => void;
 }
 
 export default function PasswordToggle({ secure, onPress }: PasswordToggleProps) {
