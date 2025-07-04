@@ -95,5 +95,5 @@ export {
     ScreenOrientation,
     Insets,
     InAppExperience,
-    NavigationBar,
+    NavigationBar
 };
