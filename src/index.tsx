@@ -32,7 +32,7 @@ import RadioButton from "./components/radioButton/radioButton";
 import Button from "./components/button/button";
 import Carousel from "./components/carousel/carousel";
 import Input from "./components/input/input";
-import OTPInput from "./components/otp/otp";
+import OTPInput from "./components/otp";
 import Dialog from "./components/dialog/dialog";
 import AppProvider from "./components/appProvider/appProvider";
 import BadgeButton from "./components/badgeButton/badgeButton";
