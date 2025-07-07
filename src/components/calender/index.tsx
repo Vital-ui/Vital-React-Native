@@ -1,12 +1,11 @@
 import React from "react";
-import {StyleSheet, View, Text} from "react-native";
-import {dayNames} from "./components/helpers";
-import {padding} from "../spacing/padding";
+import { View, Text } from "react-native";
+import { dayNames } from "./helpers";
 import Dates from "./components/Dates";
 import Header from "./components/Header";
-import {CalenderProps} from "./types";
+import type { CalenderProps } from "./types";
 import ThemeContext from "../context/context";
-
+import { styles } from "./styles";
 
 const Calender = (props: CalenderProps) => {
     const context = React.useContext(ThemeContext);
@@ -20,36 +19,28 @@ const Calender = (props: CalenderProps) => {
         setDate(new Date(temp.setMonth(temp.getMonth() - 1)));
     };
     return (
-        <View
-            style={[
-                {
-                    borderWidth: StyleSheet.hairlineWidth * 2,
-                    borderColor: "rgb(228, 233, 242)",
-                    borderRadius: 4
-                },
-                props.styles?.containerStyle
-            ]}
-        >
+        <View style={[styles.container, props.styles?.containerStyle]}         >
             <Header
                 month={date.getMonth()} year={date.getFullYear()} nextMonth={nextMonth} prevMonth={prevMonth}
                 headerStyle={props.styles?.headerStyle} renderHeader={props.renderHeader}
             />
-            <View style={[{flexDirection: "row", justifyContent: "space-evenly"}, padding.pb1]}>
+            <View style={[styles.dayNamesContainer]}>
                 {
                     dayNames.map((day, index) => (
-                        <View style={{flex: 1, alignItems: "center"}} key={index}>
-                            <Text style={[{
-                                ...context.fontConfig,
-                                color: context.theme.TextColor,
-                                fontWeight: "bold",
-                                width: "100%",
-                                textAlign: "center"
-                            }, props.styles?.dayStyle]}>{day}</Text>
+                        <View style={styles.dayNameContainer} key={index}>
+                            <Text style={[
+                                context.fontConfig,
+                                styles.dayNameText,
+                                { color: context.theme.TextColor },
+                                props.styles?.dayStyle
+                            ]}>
+                                {day}
+                            </Text>
                         </View>
                     ))
                 }
             </View>
-            <View style={[styles.daySeparatorLine, props.styles?.lineSeparatorStyle]}/>
+            <View style={[styles.daySeparatorLine, props.styles?.lineSeparatorStyle]} />
             <Dates
                 month={date.getMonth()}
                 year={date.getFullYear()}
@@ -65,12 +56,3 @@ const Calender = (props: CalenderProps) => {
 };
 
 export default Calender;
-
-
-const styles = StyleSheet.create({
-    daySeparatorLine: {
-        borderWidth: StyleSheet.hairlineWidth,
-        borderColor: "rgb(228, 233, 242)",
-        borderRadius: 4
-    }
-});

@@ -1,8 +1,8 @@
-import {View} from "react-native";
+import { View } from "react-native";
 import React from "react";
-import {getDays} from "./helpers";
-import DateBox from "./DateBox";
-import {DateProps} from "./types";
+import { getDays } from "../../helpers";
+import type { DateProps } from "../../types";
+import DateBox from "../DateBox";
 
 const Dates = (props: DateProps) => {
     const days = new Array(getDays(new Date(props.year, props.month + 1))).fill(1).map((_, i) => i + 1);
@@ -18,11 +18,12 @@ const Dates = (props: DateProps) => {
         }
         return undefined;
     }, [props.minimumDate]);
+
     return (
         <View>
             {
                 firstWeek[6] &&
-                <View style={{flexDirection: "row"}}>
+                <View style={{ flexDirection: "row" }}>
                     {
                         firstWeek.map((day, i) => {
                             return <DateBox
@@ -43,7 +44,7 @@ const Dates = (props: DateProps) => {
                         flag = true;
                         temp = temp.concat([1, 2, 3, 4, 5, 6].slice(0, 7 - temp.length));
                     }
-                    return <View style={{flexDirection: "row"}} key={i}>
+                    return <View style={{ flexDirection: "row" }} key={i}>
                         {
                             temp.map((day, i) =>
                                 <DateBox
@@ -61,4 +62,4 @@ const Dates = (props: DateProps) => {
     );
 };
 
-export default Dates;
+export default Dates; 

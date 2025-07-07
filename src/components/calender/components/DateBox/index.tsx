@@ -1,8 +1,9 @@
-import {Pressable, StyleSheet, Text, View} from "react-native";
+import { Pressable, Text, View } from "react-native";
 import React from "react";
-import {padding} from "../../spacing/padding";
-import {DateBoxProps} from "./types";
-import ThemeContext from "../../context/context";
+import { padding } from "../../../spacing/padding";
+import type { DateBoxProps } from "../../types";
+import ThemeContext from "../../../context/context";
+import { styles } from "./styles";
 
 const DateBox = (props: DateBoxProps) => {
     const context = React.useContext(ThemeContext);
@@ -28,12 +29,12 @@ const DateBox = (props: DateBoxProps) => {
                     {
                         borderRadius: 2,
                         borderColor: borderColor,
-                        borderWidth: StyleSheet.hairlineWidth * 2
+                        borderWidth: 2
                     }
-                ]}/>
+                ]} />
         }
 
-        <View style={[padding.py3, {width: "100%"}]}>
+        <View style={[padding.py3, { width: "100%" }]}>
             <Text
                 style={[
                     {
@@ -51,15 +52,4 @@ const DateBox = (props: DateBoxProps) => {
     </Pressable>;
 };
 
-export default DateBox;
-
-
-const styles = StyleSheet.create({
-    activeDateBackground: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%"
-    }
-});
+export default DateBox; 
