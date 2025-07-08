@@ -37,7 +37,7 @@ import Dialog from "./components/dialog/dialog";
 import AppProvider from "./components/appProvider/appProvider";
 import BadgeButton from "./components/badgeButton/badgeButton";
 import ProgressBar from "./components/progressBar/ProgressBar";
-import Switch from "./components/switch/Switch";
+import Switch from "./components/switch";
 import Toast from "./components/toast/toast";
 import Drawer from "./components/drawer/drawer";
 import SegmentedTab from "./components/segmentedTab/segmentedTab";
