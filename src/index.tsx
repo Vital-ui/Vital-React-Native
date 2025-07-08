@@ -33,7 +33,7 @@ import Button from "./components/button";
 import Carousel from "./components/carousel/carousel";
 import Input from "./components/input/input";
 import OTPInput from "./components/otp/otp";
-import Dialog from "./components/dialog/dialog";
+import Dialog from "./components/dialog";
 import AppProvider from "./components/appProvider/appProvider";
 import BadgeButton from "./components/badgeButton/badgeButton";
 import ProgressBar from "./components/progressBar/ProgressBar";
