@@ -1,11 +1,10 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { dayNames } from "./helpers";
 import Dates from "./components/Dates";
 import Header from "./components/Header";
 import type { CalenderProps } from "./types";
 import ThemeContext from "../context/context";
-import H7 from "../typography/h7";
 import { styles } from "./styles";
 import { CalendarProvider, useCalendarContext } from "./context/CalendarContext";
 
@@ -37,13 +36,14 @@ const CalendarContent = ({ renderHeader }: { renderHeader?: CalenderProps['rende
                 {
                     dayNames.map((day, index) => (
                         <View style={styles.dayNameContainer} key={index}>
-                            <H7 style={[
+                            <Text style={[
+                                context.fontConfig,
                                 styles.dayNameText,
                                 { color: context.theme.TextColor },
                                 calendarContext.styles?.dayStyle
                             ]}>
                                 {day}
-                            </H7>
+                            </Text>
                         </View>
                     ))
                 }

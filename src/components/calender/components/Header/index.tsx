@@ -1,9 +1,8 @@
-import { Image, TouchableHighlight, View } from "react-native";
+import { Image, TouchableHighlight, View, Text } from "react-native";
 import React from "react";
 import { monthNames } from "../../helpers";
 import type { HeaderProps } from "../../types";
 import ThemeContext from "../../../context/context";
-import H3 from "../../../typography/h3";
 import { styles } from "./styles";
 import { useCalendarContext } from "../../context/CalendarContext";
 
@@ -16,15 +15,16 @@ const Header = (props: HeaderProps) => {
             {
                 props.renderHeader ?
                     props.renderHeader(monthNames[props.month], props.year) :
-                    <H3
+                    <Text
                         style={[
-                            { color: context.theme.TextColor },
+                            context.fontConfig,
+                            { color: context.theme.TextColor, fontSize: require('react-native').Dimensions.get('screen').width * 0.055 },
                             styles.headerText,
                             calendarContext.styles?.headerStyle
                         ]}
                     >
                         {monthNames[props.month]} {props.year}
-                    </H3>
+                    </Text>
             }
             <View style={styles.buttonContainer}>
                 <TouchableHighlight

@@ -1,8 +1,7 @@
-import { Pressable, View } from "react-native";
+import { Pressable, View, Text } from "react-native";
 import React from "react";
 import type { DateBoxProps } from "../../types";
 import ThemeContext from "../../../context/context";
-import H6 from "../../../typography/h6";
 import { styles } from "./styles";
 import { useCalendarContext } from "../../context/CalendarContext";
 
@@ -34,7 +33,7 @@ const DateBox = (props: DateBoxProps) => {
         }
 
         <View style={styles.dateContainer}>
-            <H6
+            <Text
                 style={[
                     styles.dateText,
                     { color: props.disabled ? context.theme.WhiteMuted : context.theme.TextColor },
@@ -43,7 +42,7 @@ const DateBox = (props: DateBoxProps) => {
                 ]}
             >
                 {props.day}
-            </H6>
+            </Text>
         </View>
     </Pressable>;
 };
