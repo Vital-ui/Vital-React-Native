@@ -1,8 +1,8 @@
-import { Pressable, Text, View } from "react-native";
+import { Pressable, View } from "react-native";
 import React from "react";
-import { padding } from "../../../spacing/padding";
 import type { DateBoxProps } from "../../types";
 import ThemeContext from "../../../context/context";
+import H6 from "../../../typography/h6";
 import { styles } from "./styles";
 
 const DateBox = (props: DateBoxProps) => {
@@ -10,12 +10,9 @@ const DateBox = (props: DateBoxProps) => {
     const date = new Date(props.year.toString() + "-" + (props.month + 1).toString().padStart(2, "0") + "-" + (props.day).toString().padStart(2, "0"));
     const active = date.getTime() == props.selectedDate?.getTime();
     const borderColor = active ? "#4285F4" : "transparent";
-    return <Pressable
-        style={[{
-            flex: 1,
-            alignItems: "center",
 
-        }]}
+    return <Pressable
+        style={styles.container}
         disabled={props.disabled}
         onPress={() => !active ? props.onSelect(date) : null}
     >
@@ -34,20 +31,17 @@ const DateBox = (props: DateBoxProps) => {
                 ]} />
         }
 
-        <View style={[padding.py3, { width: "100%" }]}>
-            <Text
+        <View style={styles.dateContainer}>
+            <H6
                 style={[
-                    {
-                        textAlign: "center",
-                        color: props.disabled ? context.theme.WhiteMuted : context.theme.TextColor,
-                        fontWeight: "bold"
-                    },
+                    styles.dateText,
+                    { color: props.disabled ? context.theme.WhiteMuted : context.theme.TextColor },
                     props.dateStyle,
                     !props.disabled && active ? props.activeDateStyle : undefined
                 ]}
             >
                 {props.day}
-            </Text>
+            </H6>
         </View>
     </Pressable>;
 };

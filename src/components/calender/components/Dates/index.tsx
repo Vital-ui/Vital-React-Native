@@ -3,6 +3,7 @@ import React from "react";
 import { getDays } from "../../helpers";
 import type { DateProps } from "../../types";
 import DateBox from "../DateBox";
+import { styles } from "./styles";
 
 const Dates = (props: DateProps) => {
     const days = new Array(getDays(new Date(props.year, props.month + 1))).fill(1).map((_, i) => i + 1);
@@ -23,7 +24,7 @@ const Dates = (props: DateProps) => {
         <View>
             {
                 firstWeek[6] &&
-                <View style={{ flexDirection: "row" }}>
+                <View style={styles.weekContainer}>
                     {
                         firstWeek.map((day, i) => {
                             return <DateBox
@@ -44,7 +45,7 @@ const Dates = (props: DateProps) => {
                         flag = true;
                         temp = temp.concat([1, 2, 3, 4, 5, 6].slice(0, 7 - temp.length));
                     }
-                    return <View style={{ flexDirection: "row" }} key={i}>
+                    return <View style={styles.weekContainer} key={i}>
                         {
                             temp.map((day, i) =>
                                 <DateBox

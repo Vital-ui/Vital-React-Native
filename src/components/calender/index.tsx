@@ -1,10 +1,11 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { dayNames } from "./helpers";
 import Dates from "./components/Dates";
 import Header from "./components/Header";
 import type { CalenderProps } from "./types";
 import ThemeContext from "../context/context";
+import H7 from "../typography/h7";
 import { styles } from "./styles";
 
 const Calender = (props: CalenderProps) => {
@@ -19,23 +20,22 @@ const Calender = (props: CalenderProps) => {
         setDate(new Date(temp.setMonth(temp.getMonth() - 1)));
     };
     return (
-        <View style={[styles.container, props.styles?.containerStyle]}         >
+        <View style={[styles.container, props.styles?.containerStyle]}>
             <Header
                 month={date.getMonth()} year={date.getFullYear()} nextMonth={nextMonth} prevMonth={prevMonth}
                 headerStyle={props.styles?.headerStyle} renderHeader={props.renderHeader}
             />
-            <View style={[styles.dayNamesContainer]}>
+            <View style={styles.dayNamesContainer}>
                 {
                     dayNames.map((day, index) => (
                         <View style={styles.dayNameContainer} key={index}>
-                            <Text style={[
-                                context.fontConfig,
+                            <H7 style={[
                                 styles.dayNameText,
                                 { color: context.theme.TextColor },
                                 props.styles?.dayStyle
                             ]}>
                                 {day}
-                            </Text>
+                            </H7>
                         </View>
                     ))
                 }

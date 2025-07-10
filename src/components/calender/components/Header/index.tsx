@@ -1,55 +1,54 @@
-import { Dimensions, Image, Text, TouchableHighlight, View } from "react-native";
+import { Image, TouchableHighlight, View } from "react-native";
 import React from "react";
-import { padding } from "../../../spacing/padding";
 import { monthNames } from "../../helpers";
-import { borderRadius } from "../../../border/borderRadius";
 import type { HeaderProps } from "../../types";
 import ThemeContext from "../../../context/context";
+import H3 from "../../../typography/h3";
+import { styles } from "./styles";
 
 const Header = (props: HeaderProps) => {
     const context = React.useContext(ThemeContext);
     return (
-        <View style={[{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }, padding.p2]}>
+        <View style={styles.container}>
             {
                 props.renderHeader ?
                     props.renderHeader(monthNames[props.month], props.year) :
-                    <Text
+                    <H3
                         style={[
-                            {
-                                ...context.fontConfig,
-                                color: context.theme.TextColor,
-                                fontSize: Dimensions.get("screen").width * 0.055,
-                                fontWeight: "bold",
-                                ...padding.px3, ...padding.py2
-                            },
+                            { color: context.theme.TextColor },
+                            styles.headerText,
                             props.headerStyle
                         ]}
                     >
                         {monthNames[props.month]} {props.year}
-                    </Text>
+                    </H3>
             }
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <View style={styles.buttonContainer}>
                 <TouchableHighlight
                     onPress={props.prevMonth}
                     underlayColor={context.theme.TextColor + "11"}
-                    style={[padding.px3, padding.py2, borderRadius.br2]}
+                    style={styles.button}
                 >
-                    <Image source={require("../../assets/angle-left.png")} style={{
-                        height: Dimensions.get("screen").width * 0.04,
-                        width: Dimensions.get("screen").width * 0.04,
-                        tintColor: context.theme.TextColor
-                    }} />
+                    <Image
+                        source={require("../../assets/angle-left.png")}
+                        style={[
+                            styles.buttonImage,
+                            { tintColor: context.theme.TextColor }
+                        ]}
+                    />
                 </TouchableHighlight>
                 <TouchableHighlight
                     onPress={props.nextMonth}
                     underlayColor={context.theme.TextColor + "11"}
-                    style={[padding.px3, padding.py2, borderRadius.br2]}
+                    style={styles.button}
                 >
-                    <Image source={require("../../assets/angle-right.png")} style={{
-                        height: Dimensions.get("screen").width * 0.04,
-                        width: Dimensions.get("screen").width * 0.04,
-                        tintColor: context.theme.TextColor
-                    }} />
+                    <Image
+                        source={require("../../assets/angle-right.png")}
+                        style={[
+                            styles.buttonImage,
+                            { tintColor: context.theme.TextColor }
+                        ]}
+                    />
                 </TouchableHighlight>
             </View>
         </View>
