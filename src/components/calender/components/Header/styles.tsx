@@ -1,8 +1,6 @@
-import { StyleSheet } from "react-native";
+import {Dimensions, StyleSheet} from "react-native";
 import { padding } from "../../../spacing/padding";
 import { borderRadius } from "../../../border/borderRadius";
-import { width } from "../../../width/width";
-import { height } from "../../../height/height";
 
 export const styles = StyleSheet.create({
     container: {
@@ -26,7 +24,7 @@ export const styles = StyleSheet.create({
         ...borderRadius.br2
     },
     buttonImage: {
-        ...width.w4,
-        ...height.h4
+        height: Dimensions.get("screen").width * 0.04,
+        width: Dimensions.get("screen").width * 0.04,
     }
 }); 

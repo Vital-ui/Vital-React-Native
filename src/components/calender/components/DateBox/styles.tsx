@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import { padding } from "../../../spacing/padding";
-import { width } from "../../../width/width";
 
 export const styles = StyleSheet.create({
     container: {
@@ -13,6 +12,10 @@ export const styles = StyleSheet.create({
         left: 0,
         width: "100%",
         height: "100%"
+    },
+    inactiveDateBackground: {
+        borderRadius: 2,
+        borderWidth: StyleSheet.hairlineWidth * 2
     },
     dateContainer: {
         ...padding.py3,

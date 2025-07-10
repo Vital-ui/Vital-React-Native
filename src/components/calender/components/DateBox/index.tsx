@@ -1,4 +1,4 @@
-import { Pressable, View, Text } from "react-native";
+import {Pressable, View, Text, StyleSheet} from "react-native";
 import React from "react";
 import type { DateBoxProps } from "../../types";
 import ThemeContext from "../../../context/context";
@@ -10,6 +10,7 @@ const DateBox = (props: DateBoxProps) => {
     const calendarContext = useCalendarContext();
     const date = new Date(props.year.toString() + "-" + (props.month + 1).toString().padStart(2, "0") + "-" + (props.day).toString().padStart(2, "0"));
     const active = date.getTime() == props.selectedDate?.getTime();
+    // TODO: Double check this variable borderColor. Is it being used when the date is active?
     const borderColor = active ? "#4285F4" : "transparent";
 
     return <Pressable
@@ -25,10 +26,9 @@ const DateBox = (props: DateBoxProps) => {
                 <View style={[
                     styles.activeDateBackground,
                     {
-                        borderRadius: 2,
                         borderColor: borderColor,
-                        borderWidth: 2
-                    }
+                    },
+                    styles.inactiveDateBackground,
                 ]} />
         }
 

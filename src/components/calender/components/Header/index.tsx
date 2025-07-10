@@ -1,4 +1,4 @@
-import { Image, TouchableHighlight, View, Text } from "react-native";
+import {Image, TouchableHighlight, View, Text, Dimensions} from "react-native";
 import React from "react";
 import { monthNames } from "../../helpers";
 import type { HeaderProps } from "../../types";
@@ -18,7 +18,7 @@ const Header = (props: HeaderProps) => {
                     <Text
                         style={[
                             context.fontConfig,
-                            { color: context.theme.TextColor, fontSize: require('react-native').Dimensions.get('screen').width * 0.055 },
+                            { color: context.theme.TextColor, fontSize: Dimensions.get("screen").width * 0.055 },
                             styles.headerText,
                             calendarContext.styles?.headerStyle
                         ]}
