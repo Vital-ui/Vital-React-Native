@@ -7,23 +7,31 @@ import type { CalenderProps } from "./types";
 import ThemeContext from "../context/context";
 import H7 from "../typography/h7";
 import { styles } from "./styles";
+import { CalendarProvider, useCalendarContext } from "./context/CalendarContext";
 
-const Calender = (props: CalenderProps) => {
+const CalendarContent = ({ renderHeader }: { renderHeader?: CalenderProps['renderHeader'] }) => {
     const context = React.useContext(ThemeContext);
+    const calendarContext = useCalendarContext();
     const [date, setDate] = React.useState(new Date());
+
     const nextMonth = () => {
         const temp = date;
         setDate(new Date(temp.setMonth(temp.getMonth() + 1)));
     };
+
     const prevMonth = () => {
         const temp = date;
         setDate(new Date(temp.setMonth(temp.getMonth() - 1)));
     };
+
     return (
-        <View style={[styles.container, props.styles?.containerStyle]}>
+        <View style={[styles.container, calendarContext.styles?.containerStyle]}>
             <Header
-                month={date.getMonth()} year={date.getFullYear()} nextMonth={nextMonth} prevMonth={prevMonth}
-                headerStyle={props.styles?.headerStyle} renderHeader={props.renderHeader}
+                month={date.getMonth()}
+                year={date.getFullYear()}
+                nextMonth={nextMonth}
+                prevMonth={prevMonth}
+                renderHeader={renderHeader}
             />
             <View style={styles.dayNamesContainer}>
                 {
@@ -32,7 +40,7 @@ const Calender = (props: CalenderProps) => {
                             <H7 style={[
                                 styles.dayNameText,
                                 { color: context.theme.TextColor },
-                                props.styles?.dayStyle
+                                calendarContext.styles?.dayStyle
                             ]}>
                                 {day}
                             </H7>
@@ -40,18 +48,28 @@ const Calender = (props: CalenderProps) => {
                     ))
                 }
             </View>
-            <View style={[styles.daySeparatorLine, props.styles?.lineSeparatorStyle]} />
+            <View style={[styles.daySeparatorLine, calendarContext.styles?.lineSeparatorStyle]} />
             <Dates
                 month={date.getMonth()}
                 year={date.getFullYear()}
-                onSelect={props.onSelect}
-                selectedDate={props.date}
-                dateStyle={props.styles?.dateStyle}
-                activeDateStyle={props.styles?.activeDateStyle}
-                activeDateBackground={props.activeDateBackground}
-                minimumDate={props.minimumDate}
             />
         </View>
+    );
+};
+
+const Calender = (props: CalenderProps) => {
+    const calendarContextValue = {
+        onSelect: props.onSelect,
+        selectedDate: props.date,
+        minimumDate: props.minimumDate,
+        activeDateBackground: props.activeDateBackground,
+        styles: props.styles,
+    };
+
+    return (
+        <CalendarProvider {...calendarContextValue}>
+            <CalendarContent renderHeader={props.renderHeader} />
+        </CalendarProvider>
     );
 };
 

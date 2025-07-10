@@ -4,9 +4,11 @@ import type { DateBoxProps } from "../../types";
 import ThemeContext from "../../../context/context";
 import H6 from "../../../typography/h6";
 import { styles } from "./styles";
+import { useCalendarContext } from "../../context/CalendarContext";
 
 const DateBox = (props: DateBoxProps) => {
     const context = React.useContext(ThemeContext);
+    const calendarContext = useCalendarContext();
     const date = new Date(props.year.toString() + "-" + (props.month + 1).toString().padStart(2, "0") + "-" + (props.day).toString().padStart(2, "0"));
     const active = date.getTime() == props.selectedDate?.getTime();
     const borderColor = active ? "#4285F4" : "transparent";
@@ -14,7 +16,7 @@ const DateBox = (props: DateBoxProps) => {
     return <Pressable
         style={styles.container}
         disabled={props.disabled}
-        onPress={() => !active ? props.onSelect(date) : null}
+        onPress={() => !active ? calendarContext.onSelect(date) : null}
     >
         {
             props.activeDateBackground ?
