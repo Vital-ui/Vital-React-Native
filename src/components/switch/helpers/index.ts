@@ -5,7 +5,7 @@ import {
 } from "react-native-reanimated";
 
 
-export const onChange = (
+export const onSwitch = (
     active: boolean,
     setActive: (value: boolean) => void,
     onChange ?: (value: boolean) => void
