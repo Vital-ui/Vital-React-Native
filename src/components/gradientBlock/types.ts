@@ -1,15 +1,15 @@
-import type {ColorValue, Falsy, RecursiveArray, RegisteredStyle, ViewStyle} from "react-native";
-import type React from "react";
+import type {ColorValue, StyleProp, ViewStyle} from "react-native";
+import type {ReactNode} from "react";
 
 export type GradientBlockProps = {
     colors: (string | number)[];
-    start?: { x: number; y: number; };
-    end?: { x: number; y: number; };
+    start?: { x: number; y: number };
+    end?: { x: number; y: number };
     bgfill?: boolean;
-    borderRadius?:  ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<Falsy | ViewStyle | RegisteredStyle<ViewStyle>> | readonly (Falsy | ViewStyle | RegisteredStyle<ViewStyle>)[];
-    style: ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<Falsy | ViewStyle | RegisteredStyle<ViewStyle>> | readonly (Falsy | ViewStyle | RegisteredStyle<ViewStyle>)[];
+    borderRadius?: StyleProp<ViewStyle>;
+    style?: StyleProp<ViewStyle>;
     borderWidth?: number;
-    padding: ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<Falsy | ViewStyle | RegisteredStyle<ViewStyle>> | readonly (Falsy | ViewStyle | RegisteredStyle<ViewStyle>)[];
-    backgroundColor: ColorValue | undefined;
-    children?: React.ReactChild | React.ReactFragment;
-}
+    padding?: StyleProp<ViewStyle>;
+    backgroundColor?: ColorValue;
+    children?: ReactNode;
+};
