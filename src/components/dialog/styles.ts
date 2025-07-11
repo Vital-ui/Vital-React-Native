@@ -1,6 +1,6 @@
 import {Dimensions, StyleSheet} from "react-native";
 
-export const styles = StyleSheet.create({
+export const componentStyles = StyleSheet.create({
     modal: {
         flex: 1,
         justifyContent: "center",
