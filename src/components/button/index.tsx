@@ -1,41 +1,49 @@
 import React, {useContext} from "react";
 import LinearGradient from "react-native-linear-gradient";
-import {TouchableOpacity, View, ActivityIndicator, Dimensions, StyleSheet} from "react-native";
+import {TouchableOpacity, View, ActivityIndicator, StyleSheet} from "react-native";
 import ThemeContext from "../context/context";
 import type {ButtonType} from "./types";
+import {componentStyles} from "./styles";
 
-const {height: SCREEN_HEIGHT} = Dimensions.get("screen");
 
 export default function Button(props: ButtonType) {
+    const {
+        styles,
+        state,
+        addons,
+        onPress,
+        touchableOpacityProps,
+        children
+    } = props;
     const {theme} = useContext(ThemeContext);
     const colors = React.useMemo(() => {
-        if (props.gradient) {
-            if (Array.isArray(props.color)) {
-                return props.color;
+        if (styles?.gradient) {
+            if (Array.isArray(styles.color)) {
+                return styles.color;
             }
         }
-        if(typeof props.color === "string") {
-            return [props.color, props.color];
+        if(typeof styles ?.color === "string") {
+            return [styles?.color, styles?.color];
         }
         return [theme.ThemeMuted, theme.ThemeMuted];
-    }, [props.gradient, props.color, theme]);
+    }, [styles?.gradient, styles?.color, theme]);
 
-    const gradientStart = props.start ?? {x: 0.0, y: 1.0};
-    const gradientEnd = props.end ?? {x: 1.0, y: 1.0};
+    const gradientStart = styles?.start ?? {x: 0.0, y: 1.0};
+    const gradientEnd = styles?.end ?? {x: 1.0, y: 1.0};
 
     const linearGradientStyle = [
         {overflow: "hidden"},
-        props.borderRadius,
-        props.margin,
-        props.bordered && {padding: StyleSheet.hairlineWidth * 4},
+        styles?.borderRadius,
+        styles?.margin,
+        styles?.bordered && {padding: StyleSheet.hairlineWidth * 4},
     ];
 
     const touchableStyle = [
-        props.padding,
-        props.bordered && {
-            backgroundColor: props.backgroundColor ?? theme.Theme,
+        styles?.padding,
+        styles?.bordered && {
+            backgroundColor: styles?.backgroundColor ?? theme.Theme,
         },
-        props.borderRadius,
+        styles?.borderRadius,
     ];
 
 
@@ -48,41 +56,25 @@ export default function Button(props: ButtonType) {
         >
             <TouchableOpacity
                 activeOpacity={0.65}
-                onPress={props.onPress}
-                disabled={props.loading || props.disabled}
+                onPress={onPress}
+                disabled={state?.loading || state?.disabled}
                 style={touchableStyle}
-                {...props.touchableOpacityProps}
+                {...touchableOpacityProps}
             >
-                <View style={styles.buttonWrapper}>
-                    {props.loading &&
-                                <ActivityIndicator style={styles.loadingIndicator}
+                <View style={componentStyles.buttonWrapper}>
+                    {state?.loading &&
+                                <ActivityIndicator style={componentStyles.loadingIndicator}
                                     color={"white"}/>}
-                    {props.left}
+                    {addons?.left}
                     <View
-                        style={[props.left && styles.leftSpacing, props.right && styles.rightSpacing, {flexDirection: "row"}]}>
-                        {props.children}
+                        style={[addons?.left && componentStyles.leftSpacing, addons?.right && componentStyles.rightSpacing, {flexDirection: "row"}]}>
+                        {children}
                     </View>
-                    {props.right}
+                    {addons?.right}
                 </View>
             </TouchableOpacity>
         </LinearGradient>
 
     );
 }
-const styles = StyleSheet.create({
-    buttonWrapper: {
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    loadingIndicator: {
-        marginEnd: SCREEN_HEIGHT * 0.01,
-    },
-    leftSpacing: {
-        marginStart: SCREEN_HEIGHT * 0.01,
-    },
-    rightSpacing: {
-        marginEnd: SCREEN_HEIGHT * 0.01,
-    },
 
-});

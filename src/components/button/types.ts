@@ -10,26 +10,35 @@ import type {
 import type React from "react";
 
 export type ButtonType = {
-    gradient?: boolean;
-    color?: string | [string, string];
-    start?: {
-        x:number,
-        y:number
+    styles ?: {
+        gradient?: boolean;
+        color?: string | [string, string];
+        start?: {
+            x:number,
+            y:number
+        };
+        end?: {
+            x:number,
+            y:number
+        };
+        borderRadius?: ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<Falsy | ViewStyle | RegisteredStyle<ViewStyle>> | readonly (Falsy | ViewStyle | RegisteredStyle<ViewStyle>)[];
+        margin?: ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<Falsy | ViewStyle | RegisteredStyle<ViewStyle>> | readonly (Falsy | ViewStyle | RegisteredStyle<ViewStyle>)[];
+        bordered?: boolean;
+        backgroundColor?: ColorValue;
+        padding?: ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<Falsy | ViewStyle | RegisteredStyle<ViewStyle>> | readonly (Falsy | ViewStyle | RegisteredStyle<ViewStyle>)[];
     };
-    end?: {
-        x:number,
-        y:number
+
+    state ?: {
+        loading?: boolean;
+        disabled?: boolean;
     };
-    borderRadius?: ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<Falsy | ViewStyle | RegisteredStyle<ViewStyle>> | readonly (Falsy | ViewStyle | RegisteredStyle<ViewStyle>)[];
-    margin?: ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<Falsy | ViewStyle | RegisteredStyle<ViewStyle>> | readonly (Falsy | ViewStyle | RegisteredStyle<ViewStyle>)[];
-    bordered?: boolean;
+
+    addons ?: {
+        left?: React.ReactNode;
+        right?: React.ReactNode ;
+    };
+
     onPress?: ((_: GestureResponderEvent) => void);
-    loading?: boolean;
-    disabled?: boolean;
-    padding?: ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<Falsy | ViewStyle | RegisteredStyle<ViewStyle>> | readonly (Falsy | ViewStyle | RegisteredStyle<ViewStyle>)[];
-    backgroundColor?: ColorValue;
     touchableOpacityProps?: JSX.IntrinsicAttributes & JSX.IntrinsicClassAttributes<TouchableOpacity> & Readonly<TouchableOpacityProps> & Readonly<{ children?: React.ReactNode; }>;
-    left?: React.ReactChild | React.ReactFragment;
-    right?: React.ReactChild | React.ReactFragment ;
-    children?: React.ReactChild | React.ReactFragment;
+    children?: React.ReactNode;
 }
