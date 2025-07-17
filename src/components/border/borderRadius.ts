@@ -1,27 +1,32 @@
-import {StyleSheet, Dimensions} from "react-native";
-
-const width = Dimensions.get("screen").width <= 545 ? Dimensions.get("screen").width : Dimensions.get("screen").width * 0.8;
+import {StyleSheet} from "react-native";
+import {rem} from "../typography/config"
 
 export const borderRadius = StyleSheet.create({
     br0: {
-        borderRadius: 0,
+        borderRadius: 0, // Tailwind: rounded-none
     },
     br1: {
-        borderRadius: width * 0.01,
+        borderRadius: rem(0.125), // Tailwind: rounded-sm (2px)
     },
     br2: {
-        borderRadius: width * 0.02,
+        borderRadius: rem(0.25), // Tailwind: rounded (4px)
     },
     br3: {
-        borderRadius: width * 0.03,
+        borderRadius: rem(0.375), // Tailwind: rounded-md (6px)
     },
     br4: {
-        borderRadius: width * 0.04,
+        borderRadius: rem(0.5), // Tailwind: rounded-lg (8px)
     },
     br5: {
-        borderRadius: width * 0.05,
+        borderRadius: rem(0.75), // Tailwind: rounded-xl (12px)
+    },
+    br6: {
+        borderRadius: rem(1), // Tailwind: rounded-2xl (16px)
+    },
+    br7: {
+        borderRadius: rem(1.5), // Tailwind: rounded-3xl (24px)
     },
     circle: {
-        borderRadius: width,
+        borderRadius: 9999, // Tailwind: rounded-full
     },
 });
