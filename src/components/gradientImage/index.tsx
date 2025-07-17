@@ -1,23 +1,24 @@
-import React from "react";
-import {View, Image} from "react-native";
+import {Image, View} from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import type {GradientImageProps} from "./types";
+import {gradientImageStyles} from "./styles";
 
 export default function GradientImage(props: GradientImageProps) {
     return (
         <View>
             <Image
                 source={props.image}
-                style={props.style}
+                style={[gradientImageStyles.image, props.style]}
+                resizeMode={props.resizeMode || "cover"}
             />
             <LinearGradient
                 colors={props.colors}
-                start={props.start} end={props.end}
-                style={[{position: "absolute", top: 0, left: 0, right: 0, bottom: 0}, props.style]}
+                start={props.start}
+                end={props.end}
+                style={[gradientImageStyles.gradient, props.style]}
             >
                 {props.children}
             </LinearGradient>
         </View>
     );
 }
-

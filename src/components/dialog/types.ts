@@ -15,10 +15,10 @@ export type DialogProps = {
     onBackDropPress?: ((_: GestureResponderEvent) => void);
     header?: boolean;
     headerColor?: ColorValue;
-    title?: React.ReactChild | React.ReactFragment;
+    title?: React.ReactNode;
     onRequestClose?: ((_: GestureResponderEvent) => void);
     bodyColor?: ColorValue;
-    children?: React.ReactChild | React.ReactFragment;
+    children?: React.ReactNode;
     onRequestOpen?: ((_: GestureResponderEvent) => void);
-    actionFrom?: React.ReactChild | React.ReactFragment;
+    actionFrom?: React.ReactNode;
 }
