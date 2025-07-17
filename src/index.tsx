@@ -25,7 +25,7 @@ import H9 from "./components/typography/h9";
 import Container from "./components/container/container";
 import GradientImage from "./components/gradientImage";
 import Accordion from "./components/accordion";
-import GradientBlock from "./components/gradientBlock/gradientBlock";
+import GradientBlock from "./components/gradientBlock";
 import Block from "./components/block/block";
 import Checkbox from "./components/checkbox";
 import RadioButton from "./components/radioButton";
