@@ -23,7 +23,7 @@ import H7 from "./components/typography/h7";
 import H8 from "./components/typography/h8";
 import H9 from "./components/typography/h9";
 import Container from "./components/container/container";
-import Accordion from "./components/accordion/accordion";
+import Accordion from "./components/accordion";
 import GradientImage from "./components/gradientImage/gradientImage";
 import GradientBlock from "./components/gradientBlock/gradientBlock";
 import Block from "./components/block/block";
