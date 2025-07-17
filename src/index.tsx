@@ -27,7 +27,7 @@ import GradientImage from "./components/gradientImage";
 import Accordion from "./components/accordion";
 import GradientBlock from "./components/gradientBlock/gradientBlock";
 import Block from "./components/block/block";
-import Checkbox from "./components/checkbox/checkbox";
+import Checkbox from "./components/checkbox";
 import RadioButton from "./components/radioButton";
 import Button from "./components/button";
 import Carousel from "./components/carousel";
