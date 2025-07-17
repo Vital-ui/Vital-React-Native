@@ -30,7 +30,7 @@ import Block from "./components/block/block";
 import Checkbox from "./components/checkbox/checkbox";
 import RadioButton from "./components/radioButton";
 import Button from "./components/button";
-import Carousel from "./components/carousel/carousel";
+import Carousel from "./components/carousel";
 import Input from "./components/input/input";
 import OTPInput from "./components/otp/otp";
 import Dialog from "./components/dialog";
