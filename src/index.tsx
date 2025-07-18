@@ -38,7 +38,7 @@ import AppProvider from "./components/appProvider/appProvider";
 import BadgeButton from "./components/badgeButton";
 import ProgressBar from "./components/progressBar/ProgressBar";
 import Switch from "./components/switch";
-import Toast from "./components/toast/toast";
+import Toast from "./components/toast";
 import Drawer from "./components/drawer/drawer";
 import SegmentedTab from "./components/segmentedTab/segmentedTab";
 import Calender from "./components/calender";
