@@ -11,22 +11,22 @@ export type TitleType = {
 
 export type BlockType = TitleType & {
     titleMargin?: {
-        margin?: number;
-        marginHorizontal?: number;
-        marginVertical?: number;
-        marginTop?: number;
-        marginBottom?: number;
-        marginRight?: number;
-        marginLeft?: number;
+        margin?: string | number;
+        marginHorizontal?: string | number;
+        marginVertical?: string | number;
+        marginTop?: string | number;
+        marginBottom?: string | number;
+        marginRight?: string | number;
+        marginLeft?: string | number;
     };
     blockMargin?: {
-        margin?: number;
-        marginHorizontal?: number;
-        marginVertical?: number;
-        marginTop?: number;
-        marginBottom?: number;
-        marginRight?: number;
-        marginLeft?: number;
+        margin?: string | number;
+        marginHorizontal?: string | number;
+        marginVertical?: string | number;
+        marginTop?: string | number;
+        marginBottom?: string | number;
+        marginRight?: string | number;
+        marginLeft?: string | number;
     };
     titleFluid?: boolean;
     header?: boolean;
