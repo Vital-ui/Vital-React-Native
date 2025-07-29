@@ -2,7 +2,7 @@ import type {Falsy, RecursiveArray, RegisteredStyle, ViewStyle} from "react-nati
 import type React from "react";
 
 export type AccordionProps = {
-    styles: {
+    styles?: {
         style?: ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>>;
         titleStyle?: ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | readonly (ViewStyle | Falsy | RegisteredStyle<ViewStyle>)[];
         bodyStyle?: ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | readonly (ViewStyle | Falsy | RegisteredStyle<ViewStyle>)[];
@@ -11,5 +11,5 @@ export type AccordionProps = {
     showIcon?: boolean;
     children: React.ReactNode;
     open?: boolean;
-    setOpen?: () => null | void
+    setOpen?: () =>null | void
 }

@@ -6,15 +6,9 @@ import ThemeContext from "../context/context";
 import type {AccordionProps} from "./types";
 import {componentStyles} from "./styles";
 
-export default function Accordion({
-    title,
-    children,
-    open,
-    setOpen,
-    styles,
-    showIcon = true,
-}: AccordionProps) {
+export default function Accordion(props: AccordionProps) {
 
+    const {title, styles={}, open, setOpen, children, showIcon=false} = props;
     const [expanded, setExpanded] = React.useState(false);
     const {theme} = useContext(ThemeContext);
 
