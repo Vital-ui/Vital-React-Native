@@ -1,17 +1,17 @@
-import {Text, View, StyleSheet} from "react-native";
+import React from 'react';
+import {createDrawerNavigator} from "@react-navigation/drawer";
+import Dashboard from "./Dashboard";
+import {NavigationContainer} from "@react-navigation/native";
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
     return (
-        <View style={styles.container}>
-            <Text>Result: 5</Text>
-        </View>
+        <NavigationContainer>
+            <Drawer.Navigator>
+                <Drawer.Screen name="Dashboard" component={Dashboard}/>
+            </Drawer.Navigator>
+        </NavigationContainer>
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-});

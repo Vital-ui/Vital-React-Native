@@ -23,4 +23,4 @@ export const getDays = (date: Date) => {
             return 30;
     }
     return null;
-};
+}; 
