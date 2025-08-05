@@ -26,22 +26,22 @@ import Container from "./components/container/container";
 import GradientImage from "./components/gradientImage";
 import Accordion from "./components/accordion";
 import GradientBlock from "./components/gradientBlock";
-import Block from "./components/block/block";
+import Block from "./components/block";
 import Checkbox from "./components/checkbox";
 import RadioButton from "./components/radioButton";
 import Button from "./components/button";
 import Carousel from "./components/carousel";
-import Input from "./components/input/input";
-import OTPInput from "./components/otp/otp";
+import Input from "./components/input";
+import OTPInput from "./components/otp";
 import Dialog from "./components/dialog";
 import AppProvider from "./components/appProvider/appProvider";
-import BadgeButton from "./components/badgeButton/badgeButton";
 import ProgressBar from "./components/progressBar";
+import BadgeButton from "./components/badgeButton";
 import Switch from "./components/switch";
-import Toast from "./components/toast/toast";
+import Toast from "./components/toast";
 import Drawer from "./components/drawer/drawer";
-import SegmentedTab from "./components/segmentedTab/segmentedTab";
-import Calender from "./components/calender/calender";
+import SegmentedTab from "./components/segmentedTab";
+import Calender from "./components/calender";
 import Slider from "./components/slider/Slider";
 import Header from "./components/header/Header";
 
@@ -95,5 +95,5 @@ export {
     ScreenOrientation,
     Insets,
     InAppExperience,
-    NavigationBar,
+    NavigationBar
 };

@@ -11,7 +11,6 @@ import {
     ViewStyle,
     LayoutChangeEvent, TextStyle
 } from "react-native";
-import {SafeAreaProvider, useSafeAreaInsets} from "react-native-safe-area-context";
 import SVGBack from "./arrow-left.svg";
 import SVGDrawer from "./drawer.svg";
 import H7 from "../typography/h7";
@@ -28,7 +27,9 @@ const width = Dimensions.get("screen").width;
 const headerHeight = height * 7 / 96;
 
 function Header(props: HeaderProps) {
-    const insets = useSafeAreaInsets();
+    const insets = {
+        top: 0
+    };
     const [leftHeight, setLeftHeight] = React.useState(0);
     const [rightHeight, setRightHeight] = React.useState(0);
     const [top, setTop] = React.useState(0);
@@ -132,7 +133,9 @@ function Header(props: HeaderProps) {
 }
 
 function KeyboardAvoidingContainer(props: CoreContainerProps) {
-    const insets = useSafeAreaInsets();
+    const insets = {
+        top: 0
+    };
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -158,7 +161,9 @@ function KeyboardAvoidingContainer(props: CoreContainerProps) {
 }
 
 function StaticContainer(props: CoreContainerProps) {
-    const insets = useSafeAreaInsets();
+    const insets = {
+        top: 0
+    };
     return (
         <View style={[props.fluid ? styles.containerFluid : styles.container, {
             height: props.header ? height - headerHeight - props.bottom - insets.top : height - props.bottom,
@@ -172,7 +177,9 @@ function StaticContainer(props: CoreContainerProps) {
 }
 
 function SafeAreaContainer(props: SafeAreaContainerProps) {
-    const insets = useSafeAreaInsets();
+    const insets = {
+        bottom: 0
+    };
     if (insets.bottom && (insets.bottom > global_bottom) || props.bottom != undefined) {
         global_bottom = props.bottom == undefined ? insets.bottom : props.bottom;
     }
@@ -211,9 +218,7 @@ function SafeAreaContainer(props: SafeAreaContainerProps) {
 
 export default function Container(props: SafeAreaContainerProps) {
     return (
-        <SafeAreaProvider>
-            <SafeAreaContainer {...props}/>
-        </SafeAreaProvider>
+        <SafeAreaContainer {...props}/>
     );
 }
 const styles = StyleSheet.create({

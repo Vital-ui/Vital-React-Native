@@ -1,24 +1,39 @@
 import type React from "react";
-import type {StyleProp, TextInput, TextInputProps, TextStyle, ViewStyle} from "react-native";
+import type { StyleProp, TextInput, TextInputProps, TextStyle, ViewStyle } from "react-native";
 
-export type InputProps = TextInputProps  &{
+export type InputProps = TextInputProps & {
     ref?: React.Ref<TextInput>;
-    inputStyle?: StyleProp<ViewStyle>;
-    textStyle?: StyleProp<TextStyle>;
-    borderColor?: string | [string, string];
-    bgColor?: string;
-    borderRadius?: { borderRadius: number };
-    onFocusBorderColor?: string | [string, string];
-    onFocusBGColor?: string;
+    styles?: {
+        wrapper?: StyleProp<ViewStyle>;
+        input?: StyleProp<ViewStyle>;
+        text?: StyleProp<TextStyle>;
+        border?: {
+            color?: string | [string, string];
+            onFocusColor?: string | [string, string];
+            radius?: { borderRadius: number };
+        };
+        background?: {
+            color?: string;
+            onFocusColor?: string;
+        };
+    };
+    addons?: {
+        left?: React.ReactNode;
+        right?: React.ReactNode;
+    };
+    placeholder?: {
+        text?: string;
+        color?: string;
+        floating?: boolean;
+        floatingProps?: {
+            containerStyle?: StyleProp<ViewStyle>,
+            fontSize?: number,
+            activeFontSize?: number,
+            textStyle?: StyleProp<TextStyle>
+        }
+    };
     secureTextEntry?: boolean;
-    inputLeft?: React.ReactChild | React.ReactFragment;
-    inputRight?: React.ReactChild | React.ReactFragment;
-    feedback?: React.ReactChild | React.ReactFragment;
-    floatingPlaceholder?: boolean
-    floatingPlaceholderProps?: {
-        containerStyle?:StyleProp<ViewStyle>,
-        fontSize?: number,
-        activeFontSize?: number,
-        textStyle?: StyleProp<TextStyle>
-    }
+    feedback?: {
+        node?: React.ReactNode;
+    };
 }

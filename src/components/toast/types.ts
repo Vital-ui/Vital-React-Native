@@ -3,7 +3,7 @@ import {StyleProp, ViewStyle} from "react-native";
 
 export type ToastProps = {
     top?: number;
-    children: React.ReactChild | React.ReactFragment;
+    children: React.ReactNode;
     open: boolean;
-    toastStyle?: StyleProp<ViewStyle>;
+    style?: StyleProp<ViewStyle>;
 }
