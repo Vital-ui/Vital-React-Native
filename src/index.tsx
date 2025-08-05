@@ -42,7 +42,7 @@ import Toast from "./components/toast";
 import Drawer from "./components/drawer/drawer";
 import SegmentedTab from "./components/segmentedTab";
 import Calender from "./components/calender";
-import Slider from "./components/slider/Slider";
+import Slider from "./components/slider";
 import Header from "./components/header/Header";
 
 const {ScreenOrientation, Insets, InAppExperience, NavigationBar} =
