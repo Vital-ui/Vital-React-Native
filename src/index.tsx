@@ -35,7 +35,7 @@ import Input from "./components/input/input";
 import OTPInput from "./components/otp/otp";
 import Dialog from "./components/dialog";
 import AppProvider from "./components/appProvider/appProvider";
-import BadgeButton from "./components/badgeButton/badgeButton";
+import BadgeButton from "./components/badgeButton";
 import ProgressBar from "./components/progressBar/ProgressBar";
 import Switch from "./components/switch";
 import Toast from "./components/toast/toast";
