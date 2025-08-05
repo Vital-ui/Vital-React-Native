@@ -31,7 +31,7 @@ import Checkbox from "./components/checkbox";
 import RadioButton from "./components/radioButton";
 import Button from "./components/button";
 import Carousel from "./components/carousel";
-import Input from "./components/input/input";
+import Input from "./components/input";
 import OTPInput from "./components/otp";
 import Dialog from "./components/dialog";
 import AppProvider from "./components/appProvider/appProvider";
