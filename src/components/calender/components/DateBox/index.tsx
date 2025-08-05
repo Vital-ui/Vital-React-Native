@@ -1,22 +1,22 @@
-import {Pressable, StyleSheet, Text, View} from "react-native";
+import {Pressable, View, Text, StyleSheet} from "react-native";
 import React from "react";
-import {padding} from "../../spacing/padding";
-import {DateBoxProps} from "./types";
-import ThemeContext from "../../context/context";
+import type { DateBoxProps } from "../../types";
+import ThemeContext from "../../../context/context";
+import { styles } from "./styles";
+import { useCalendarContext } from "../../context/CalendarContext";
 
 const DateBox = (props: DateBoxProps) => {
     const context = React.useContext(ThemeContext);
+    const calendarContext = useCalendarContext();
     const date = new Date(props.year.toString() + "-" + (props.month + 1).toString().padStart(2, "0") + "-" + (props.day).toString().padStart(2, "0"));
     const active = date.getTime() == props.selectedDate?.getTime();
+    // TODO: Double check this variable borderColor. Is it being used when the date is active?
     const borderColor = active ? "#4285F4" : "transparent";
-    return <Pressable
-        style={[{
-            flex: 1,
-            alignItems: "center",
 
-        }]}
+    return <Pressable
+        style={styles.container}
         disabled={props.disabled}
-        onPress={() => !active ? props.onSelect(date) : null}
+        onPress={() => !active ? calendarContext.onSelect(date) : null}
     >
         {
             props.activeDateBackground ?
@@ -26,21 +26,17 @@ const DateBox = (props: DateBoxProps) => {
                 <View style={[
                     styles.activeDateBackground,
                     {
-                        borderRadius: 2,
                         borderColor: borderColor,
-                        borderWidth: StyleSheet.hairlineWidth * 2
-                    }
-                ]}/>
+                    },
+                    styles.inactiveDateBackground,
+                ]} />
         }
 
-        <View style={[padding.py3, {width: "100%"}]}>
+        <View style={styles.dateContainer}>
             <Text
                 style={[
-                    {
-                        textAlign: "center",
-                        color: props.disabled ? context.theme.WhiteMuted : context.theme.TextColor,
-                        fontWeight: "bold"
-                    },
+                    styles.dateText,
+                    { color: props.disabled ? context.theme.WhiteMuted : context.theme.TextColor },
                     props.dateStyle,
                     !props.disabled && active ? props.activeDateStyle : undefined
                 ]}
@@ -51,15 +47,4 @@ const DateBox = (props: DateBoxProps) => {
     </Pressable>;
 };
 
-export default DateBox;
-
-
-const styles = StyleSheet.create({
-    activeDateBackground: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%"
-    }
-});
+export default DateBox; 
