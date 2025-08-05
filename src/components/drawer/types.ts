@@ -1,11 +1,12 @@
 import React from "react";
-import {ColorValue} from "react-native";
+import type {ColorValue} from "react-native";
 
+type DrawerPosition = "top" | "bottom" | "right" | "left";
 export type DrawerProps = {
-    position?: "top" | "bottom" | "right" | "left",
-    children?: React.ReactChild | React.ReactFragment,
-    open?: boolean,
-    backgroundColor?: ColorValue,
-    width?: string,
-    onBackdropPress?: () => void | null
-}
+    position?: DrawerPosition;
+    children?: React.ReactNode;
+    open?: boolean;
+    backgroundColor?: ColorValue;
+    width?: string;
+    onBackdropPress?: () => void | null;
+};

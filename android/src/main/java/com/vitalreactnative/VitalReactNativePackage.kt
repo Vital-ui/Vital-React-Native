@@ -9,24 +9,12 @@ import java.util.HashMap
 
 class VitalReactNativePackage : BaseReactPackage() {
   override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
-    return if (name == VitalReactNativeModule.NAME) {
-      VitalReactNativeModule(reactContext)
-    } else {
-      null
-    }
+      return null
   }
 
   override fun getReactModuleInfoProvider(): ReactModuleInfoProvider {
     return ReactModuleInfoProvider {
       val moduleInfos: MutableMap<String, ReactModuleInfo> = HashMap()
-      moduleInfos[VitalReactNativeModule.NAME] = ReactModuleInfo(
-        VitalReactNativeModule.NAME,
-        VitalReactNativeModule.NAME,
-        false,  // canOverrideExistingModule
-        false,  // needsEagerInit
-        false,  // isCxxModule
-        true // isTurboModule
-      )
       moduleInfos
     }
   }
