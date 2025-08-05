@@ -26,7 +26,7 @@ import Container from "./components/container/container";
 import GradientImage from "./components/gradientImage";
 import Accordion from "./components/accordion";
 import GradientBlock from "./components/gradientBlock";
-import Block from "./components/block/block";
+import Block from "./components/block";
 import Checkbox from "./components/checkbox";
 import RadioButton from "./components/radioButton";
 import Button from "./components/button";
@@ -95,5 +95,5 @@ export {
     ScreenOrientation,
     Insets,
     InAppExperience,
-    NavigationBar,
+    NavigationBar
 };
