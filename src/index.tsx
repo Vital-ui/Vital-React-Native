@@ -1,10 +1,10 @@
-import {NativeModules} from "react-native";
-import {margin} from "./components/spacing/margin";
-import {padding} from "./components/spacing/padding";
-import {borderRadius} from "./components/border/borderRadius";
-import {height} from "./components/height/height";
-import {width} from "./components/width/width";
-import {fontSize} from "./components/typography/fontSize";
+import { NativeModules } from "react-native";
+import { margin } from "./components/spacing/margin";
+import { padding } from "./components/spacing/padding";
+import { borderRadius } from "./components/border/borderRadius";
+import { height } from "./components/height/height";
+import { width } from "./components/width/width";
+import { fontSize } from "./components/typography/fontSize";
 import {
     getRootFontSize,
     getTypographyConfig,
@@ -34,7 +34,7 @@ import Carousel from "./components/carousel";
 import Input from "./components/input";
 import OTPInput from "./components/otp";
 import Dialog from "./components/dialog";
-import AppProvider from "./components/appProvider/appProvider";
+import AppProvider from "./components/appProvider";
 import ProgressBar from "./components/progressBar";
 import BadgeButton from "./components/badgeButton";
 import Switch from "./components/switch";
@@ -45,7 +45,7 @@ import Calender from "./components/calender";
 import Slider from "./components/slider";
 import Header from "./components/header/Header";
 
-const {ScreenOrientation, Insets, InAppExperience, NavigationBar} =
+const { ScreenOrientation, Insets, InAppExperience, NavigationBar } =
     NativeModules;
 
 export {

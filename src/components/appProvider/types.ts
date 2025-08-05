@@ -6,6 +6,6 @@ export type AppProviderProps = {
     darkMode?: object;
     lightMode?: object;
     getTheme?: ((_: object) => void) | undefined;
-    children: React.ReactChild | React.ReactFragment;
+    children: React.ReactNode;
     fontConfig?: object;
 }
