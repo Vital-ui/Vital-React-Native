@@ -41,7 +41,7 @@ import Switch from "./components/switch";
 import Toast from "./components/toast/toast";
 import Drawer from "./components/drawer/drawer";
 import SegmentedTab from "./components/segmentedTab/segmentedTab";
-import Calender from "./components/calender/calender";
+import Calender from "./components/calender";
 import Slider from "./components/slider/Slider";
 import Header from "./components/header/Header";
 
