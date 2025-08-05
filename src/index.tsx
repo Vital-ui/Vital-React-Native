@@ -40,7 +40,7 @@ import ProgressBar from "./components/progressBar/ProgressBar";
 import Switch from "./components/switch";
 import Toast from "./components/toast";
 import Drawer from "./components/drawer/drawer";
-import SegmentedTab from "./components/segmentedTab/segmentedTab";
+import SegmentedTab from "./components/segmentedTab";
 import Calender from "./components/calender";
 import Slider from "./components/slider/Slider";
 import Header from "./components/header/Header";
