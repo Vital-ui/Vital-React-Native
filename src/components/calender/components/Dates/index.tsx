@@ -1,10 +1,13 @@
-import {View} from "react-native";
+import { View } from "react-native";
 import React from "react";
-import {getDays} from "./helpers";
-import DateBox from "./DateBox";
-import {DateProps} from "./types";
+import { getDays } from "../../helpers";
+import type { DateProps } from "../../types";
+import DateBox from "../DateBox";
+import { styles } from "./styles";
+import { useCalendarContext } from "../../context/CalendarContext";
 
 const Dates = (props: DateProps) => {
+    const context = useCalendarContext();
     const days = new Array(getDays(new Date(props.year, props.month + 1))).fill(1).map((_, i) => i + 1);
     const lastMonthDays = new Array(getDays(new Date(props.year, props.month))).fill(1).map((_, i) => i + 1);
     const day = new Date(props.year.toString() + "-" + (props.month + 1).toString().padStart(2, "0") + "-01").getUTCDay();
@@ -13,23 +16,30 @@ const Dates = (props: DateProps) => {
     if (-7 + firstWeek.length)
         firstWeek = lastMonthDays.slice(-7 + firstWeek.length).concat(firstWeek);
     const minimumDate = React.useMemo(() => {
-        if (props.minimumDate) {
-            return new Date(props.minimumDate.setHours(0, 0, 0, 0));
+        if (context.minimumDate) {
+            return new Date(context.minimumDate.setHours(0, 0, 0, 0));
         }
         return undefined;
-    }, [props.minimumDate]);
+    }, [context.minimumDate]);
+
     return (
         <View>
             {
                 firstWeek[6] &&
-                <View style={{flexDirection: "row"}}>
+                <View style={styles.weekContainer}>
                     {
                         firstWeek.map((day, i) => {
                             return <DateBox
                                 key={day + "_" + i}
                                 day={day}
                                 disabled={day > 20 ? true : minimumDate && new Date(props.year, props.month, day) < minimumDate}
-                                {...props}
+                                year={props.year}
+                                month={props.month}
+                                selectedDate={context.selectedDate}
+                                minimumDate={context.minimumDate}
+                                activeDateBackground={context.activeDateBackground}
+                                dateStyle={context.styles?.dateStyle}
+                                activeDateStyle={context.styles?.activeDateStyle}
                             />;
                         })
                     }
@@ -43,14 +53,20 @@ const Dates = (props: DateProps) => {
                         flag = true;
                         temp = temp.concat([1, 2, 3, 4, 5, 6].slice(0, 7 - temp.length));
                     }
-                    return <View style={{flexDirection: "row"}} key={i}>
+                    return <View style={styles.weekContainer} key={i}>
                         {
                             temp.map((day, i) =>
                                 <DateBox
                                     key={day + "_" + i}
                                     day={day}
                                     disabled={flag && day >= 1 && day <= 6 ? true : minimumDate && new Date(props.year, props.month, day) < minimumDate}
-                                    {...props}
+                                    year={props.year}
+                                    month={props.month}
+                                    selectedDate={context.selectedDate}
+                                    minimumDate={context.minimumDate}
+                                    activeDateBackground={context.activeDateBackground}
+                                    dateStyle={context.styles?.dateStyle}
+                                    activeDateStyle={context.styles?.activeDateStyle}
                                 />
                             )
                         }
@@ -61,4 +77,4 @@ const Dates = (props: DateProps) => {
     );
 };
 
-export default Dates;
+export default Dates; 
