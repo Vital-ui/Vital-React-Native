@@ -1,16 +1,13 @@
 import type {
-    ColorValue,
     Falsy,
-    GestureResponderEvent,
+    GestureResponderEvent, Pressable,
     RecursiveArray,
     RegisteredStyle,
-    TouchableOpacity, TouchableOpacityProps,
-    ViewStyle
+    ViewStyle,
 } from "react-native";
-import type React from "react";
+import React from "react";
 
 export type ButtonType = {
-    gradient?: boolean;
     color?: string | [string, string];
     start?: {
         x:number,
@@ -20,16 +17,14 @@ export type ButtonType = {
         x:number,
         y:number
     };
-    borderRadius?: ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<Falsy | ViewStyle | RegisteredStyle<ViewStyle>> | readonly (Falsy | ViewStyle | RegisteredStyle<ViewStyle>)[];
-    margin?: ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<Falsy | ViewStyle | RegisteredStyle<ViewStyle>> | readonly (Falsy | ViewStyle | RegisteredStyle<ViewStyle>)[];
+    style?: ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<Falsy | ViewStyle | RegisteredStyle<ViewStyle>> | readonly (Falsy | ViewStyle | RegisteredStyle<ViewStyle>)[];
     bordered?: boolean;
     onPress?: ((_: GestureResponderEvent) => void);
     loading?: boolean;
     disabled?: boolean;
-    padding?: ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<Falsy | ViewStyle | RegisteredStyle<ViewStyle>> | readonly (Falsy | ViewStyle | RegisteredStyle<ViewStyle>)[];
-    backgroundColor?: ColorValue;
-    touchableOpacityProps?: JSX.IntrinsicAttributes & JSX.IntrinsicClassAttributes<TouchableOpacity> & Readonly<TouchableOpacityProps> & Readonly<{ children?: React.ReactNode; }>;
-    left?: React.ReactChild | React.ReactFragment;
-    right?: React.ReactChild | React.ReactFragment ;
-    children?: React.ReactChild | React.ReactFragment;
+    // touchableOpacityProps?: JSX.IntrinsicAttributes & JSX.IntrinsicClassAttributes<typeof TouchableOpacity> & Readonly<TouchableOpacityProps> & Readonly<{ children?: React.ReactNode; }>;
+    pressableProps?: React.ComponentProps<typeof Pressable>;
+    left?: React.ReactNode;
+    right?: React.ReactNode;
+    children?: React.ReactNode;
 }
