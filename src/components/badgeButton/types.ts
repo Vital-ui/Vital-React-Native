@@ -8,4 +8,5 @@ export type BadgeButtonType = ButtonType & {
     children?: ReactNode;
     badgeData?: ReactNode
     size?: number;
+    action?: string;
 }
