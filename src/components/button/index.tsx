@@ -9,6 +9,14 @@ const {height: SCREEN_HEIGHT} = Dimensions.get("screen");
 export default function Button(props: ButtonType) {
     const {theme} = useContext(ThemeContext);
     const style = StyleSheet.flatten(props.style) as ViewStyle;
+    const styleWithoutPadding = Object.fromEntries(
+        Object.entries(style).filter(([key]) => !key.startsWith("padding"))
+    );
+
+    const styleWithPadding = Object.fromEntries(
+        Object.entries(style).filter(([key]) => key.startsWith("padding"))
+    );
+
     const colors = React.useMemo(() => {
         if (props.color) {
             if (Array.isArray(props.color)) {
@@ -27,30 +35,16 @@ export default function Button(props: ButtonType) {
     const linearGradientStyle = [
         {
             overflow: "hidden",
-            borderRadius: style.borderRadius,
-            margin: style.margin,
-            marginTop: style.marginTop,
-            marginBottom: style.marginBottom,
-            marginLeft: style.marginLeft,
-            marginRight: style.marginRight,
-            marginVertical: style.marginVertical,
-            marginHorizontal: style.marginHorizontal,
-
         },
+        styleWithoutPadding,
         props.bordered && {padding: StyleSheet.hairlineWidth * 4},
     ];
 
     const touchableStyle = [
         {
-            padding: style.padding,
-            paddingHorizontal: style.paddingHorizontal,
-            paddingVertical: style.paddingVertical,
-            paddingTop: style.paddingTop,
-            paddingBottom: style.paddingBottom,
-            paddingLeft: style.paddingLeft,
-            paddingRight: style.paddingRight,
             borderRadius: style.borderRadius,
         },
+        styleWithPadding,
         props.bordered && {
             backgroundColor: style.backgroundColor ?? theme.Theme,
         },
