@@ -1,41 +1,41 @@
-import React from "react";
+import React, { useContext } from "react";
 import {Dimensions, Pressable, StyleSheet, View} from "react-native";
-import Button from "../button/index";
-import {borderRadius} from "vital-react-native";
-import {themeState} from "../context/initialState";
+import Button from "../button";
+import {borderRadius} from "../border/borderRadius";
 import type {BadgeButtonType} from "./types";
+import ThemeContext from "../context/context";
 
 const width = Dimensions.get("screen").width;
-//Todo: themestate replace with context
-//ToDo: Keep button
+//Todo: can be completed once button component complete because styles need to be refactored
+// TODO: we will go with button only.
 function BadgeButton(props: BadgeButtonType) {
-    let action = themeState.Primary;
+    const {theme} = useContext(ThemeContext);
+    let action = theme.Primary;
     switch(props.action) {
         case "error":
-            action = themeState.Danger;
+            action = theme.Danger;
             break;
         case "warning":
-            action = themeState.Warning;
+            action = theme.Warning;
             break;
         case "success":
-            action = themeState.Success;
+            action = theme.Success;
             break;
         case "info":
-            action = themeState.Primary;
+            action = theme.Primary;
             break;
         case "muted":
-            action = themeState.WhiteMuted;
+            action = theme.WhiteMuted;
             break;
         default:
-            action = props.action || themeState.Primary;
+            action = props.action || theme.Primary;
             break;
     }
-    // TODO: Shubhm says keep Button, I think we should keep Pressable.
     return (
         <Pressable onPress={props.onPress} style={[props.style, {alignItems: "center"}]}>
-            {/*<View>*/}
-            {props.children}
-            {/*</View>*/}
+            <Button {...props} >
+                {props.children}
+            </Button>
             <View
                 style={[
                     styles.circleStyle,
