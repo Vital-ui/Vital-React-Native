@@ -10,14 +10,18 @@
     "build:ios": "react-native build-ios --scheme VitalReactNativeExample --mode Debug --extra-params \"-sdk iphonesimulator CC=clang CPLUSPLUS=clang++ LD=clang LDPLUSPLUS=clang++ GCC_OPTIMIZATION_LEVEL=0 GCC_PRECOMPILE_PREFIX_HEADER=YES ASSETCATALOG_COMPILER_OPTIMIZATION=time DEBUG_INFORMATION_FORMAT=dwarf COMPILER_INDEX_STORE_ENABLE=NO\""
   },
   "dependencies": {
+    "@react-native-masked-view/masked-view": "^0.3.2",
     "@react-navigation/drawer": "^7.5.3",
     "@react-navigation/native": "^7.1.14",
     "react": "19.0.0",
     "react-native": "0.78.2",
     "react-native-gesture-handler": "^2.27.2",
+    "react-native-linear-gradient": "^2.8.3",
     "react-native-reanimated": "^4.0.0",
     "react-native-safe-area-context": "^5.5.2",
     "react-native-screens": "^4.13.1",
+    "react-native-svg": "^15.12.1",
+    "react-native-svg-transformer": "^1.5.1",
     "react-native-worklets": "^0.4.0"
   },
   "devDependencies": {
