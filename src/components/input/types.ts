@@ -1,7 +1,7 @@
 import type React from "react";
 import type { StyleProp, TextInput, TextInputProps, TextStyle, ViewStyle } from "react-native";
 
-export type InputProps = TextInputProps & {
+export type InputProps = Omit<TextInputProps, 'placeholder'> & {
     ref?: React.Ref<TextInput>;
     styles?: {
         wrapper?: StyleProp<ViewStyle>;
@@ -21,7 +21,7 @@ export type InputProps = TextInputProps & {
         left?: React.ReactNode;
         right?: React.ReactNode;
     };
-    placeholder?: {
+    placeholder?: string | {
         text?: string;
         color?: string;
         floating?: boolean;

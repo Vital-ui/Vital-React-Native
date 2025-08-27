@@ -1,23 +1,22 @@
-import React from "react";
-import {Dimensions, Pressable, StyleSheet, View} from "react-native";
-import Button from "../button/button";
-import {borderRadius} from "vital-react-native";
-import {themeState} from "../context/initialState";
-import type {BadgeButtonType} from "./types";
+import { Dimensions, Pressable, StyleSheet, View } from "react-native";
+import { borderRadius } from "vital-react-native";
+import Button from "../button";
+import { themeState } from "../context/initialState";
+import type { BadgeButtonType } from "./types";
 
 const width = Dimensions.get("screen").width;
 
 function BadgeButton(props: BadgeButtonType) {
     return (
-        <Pressable onPress={props.onPress} style={[props.style, {alignItems: "center"}]}>
+        <Pressable onPress={props.onPress} style={[props.style, { alignItems: "center" }]}>
             <Button {...props} >
                 {props.children}
             </Button>
             <View
                 style={[
                     styles.circleStyle,
-                    props.size ? {width: props.size} : {minWidth: width * 0.045,},
-                    {height: props.size ?? width * 0.045},
+                    props.size ? { width: props.size } : { minWidth: width * 0.045, },
+                    { height: props.size ?? width * 0.045 },
 
                 ]}
             >

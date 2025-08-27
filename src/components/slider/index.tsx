@@ -1,5 +1,4 @@
 import React from "react";
-import ProgressBar from "../progressBar/ProgressBar";
 import {
     Animated,
     type DimensionValue,
@@ -7,20 +6,21 @@ import {
     PanResponder,
     View,
 } from "react-native";
-import type {SliderProps} from "./types";
 import ThemeContext from "../context/context";
-import {sliderStyles} from "./style";
+import ProgressBar from "../progressBar";
+import { sliderStyles } from "./style";
+import type { SliderProps } from "./types";
 
 const Slider = (props: SliderProps) => {
-    const {theme} = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const [progress, setProgress] = React.useState(props.initialProgress ?? 0);
     const [trackWidth, setHeight] = React.useState(0);
     const height = props.thickness ?? 6;
     const isVertical = props.vertical ?? false;
 
     const containerDimension = isVertical
-        ? {height: "100%" as DimensionValue}
-        : {width: "100%" as DimensionValue};
+        ? { height: "100%" as DimensionValue }
+        : { width: "100%" as DimensionValue };
     const pan = React.useRef(new Animated.ValueXY()).current;
     const thumbSize = height + 8;
     const thumbRadius = (height + 8) / 2;
@@ -102,13 +102,13 @@ const Slider = (props: SliderProps) => {
             if (props.vertical) {
                 pan.y.setOffset(
                     props.initialProgress *
-                        (interpolateUpper - interpolateLower),
+                    (interpolateUpper - interpolateLower),
                 );
                 pan.y.setValue(0);
             } else {
                 pan.x.setOffset(
                     props.initialProgress *
-                        (interpolateUpper - interpolateLower),
+                    (interpolateUpper - interpolateLower),
                 );
                 pan.x.setValue(0);
             }
@@ -128,7 +128,7 @@ const Slider = (props: SliderProps) => {
                     extrapolate: "clamp",
                 }),
             },
-            {translateX: -thumbRadius},
+            { translateX: -thumbRadius },
         ]
         : [
             {
@@ -141,7 +141,7 @@ const Slider = (props: SliderProps) => {
                     extrapolate: "clamp",
                 }),
             },
-            {translateY: -thumbRadius},
+            { translateY: -thumbRadius },
         ];
     return (
         <View

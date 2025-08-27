@@ -1,14 +1,14 @@
 import React from "react";
-import { View, TextInput, Platform } from "react-native";
 import type { NativeSyntheticEvent, TextInputFocusEventData } from "react-native";
+import { Platform, TextInput, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
+import { SharedValue, useSharedValue } from "react-native-reanimated";
 import ThemeContext from "../context/context";
-import type { InputProps } from "./types";
-import { SharedValue,  useSharedValue } from "react-native-reanimated";
-import ComponentStyles from "./styles";
 import FloatingPlaceholder from "./components/FloatingPlaceholder";
 import InputAddon from "./components/InputAddon";
 import PasswordToggle from "./components/PasswordToggle";
+import ComponentStyles from "./styles";
+import type { InputProps } from "./types";
 
 export default function Input(props: InputProps) {
     const context = React.useContext(ThemeContext);
@@ -40,7 +40,7 @@ export default function Input(props: InputProps) {
     React.useEffect(() => {
         onBlurHandler();
     }, []);
-    
+
     const onFocusHandler = (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
         inFocus.value = true;
         if (onFocusBorderColor) {
@@ -91,8 +91,8 @@ export default function Input(props: InputProps) {
                     style={[ComponentStyles.inputBlock, borderRadius, { backgroundColor: bgColor ? bgColor : context.theme.Theme }, styles?.input]}
                 >
                     {addons?.left && <InputAddon position="left">{addons.left}</InputAddon>}
-                    <View style={[{ flex: 1 }, ComponentStyles.inputBlock, placeholder?.floatingProps?.containerStyle]}>
-                        {placeholder?.floating && (
+                    <View style={[{ flex: 1 }, ComponentStyles.inputBlock, typeof placeholder === 'object' ? placeholder?.floatingProps?.containerStyle : undefined]}>
+                        {typeof placeholder === 'object' && placeholder?.floating && (
                             <FloatingPlaceholder
                                 placeholder={placeholder.text}
                                 placeholderTextColor={placeholder.color as string | undefined}
@@ -111,12 +111,12 @@ export default function Input(props: InputProps) {
                                 ComponentStyles.inputData,
                                 styles?.text,
                                 borderRadius,
-                                placeholder?.floating ? { marginTop: 7 } : {},
+                                typeof placeholder === 'object' && placeholder?.floating ? { marginTop: 7 } : {},
                                 props.multiline && props.numberOfLines && props.numberOfLines > 0
                                     ? { minHeight: Platform.OS === "ios" ? 20 * props.numberOfLines : undefined }
                                     : undefined
                             ]}
-                            placeholderTextColor={placeholder?.color || context.theme.TextColor}
+                            placeholderTextColor={typeof placeholder === 'object' ? placeholder?.color || context.theme.TextColor : context.theme.TextColor}
                             secureTextEntry={propSecureTextEntry && !secureTextEntry}
                             autoCapitalize="none"
                             onBlur={onBlurHandler}
@@ -124,7 +124,7 @@ export default function Input(props: InputProps) {
                             {...textInputProps}
                             defaultValue={props.defaultValue}
                             value={actualValue}
-                            placeholder={placeholder?.floating ? undefined : placeholder?.text}
+                            placeholder={typeof placeholder === 'object' ? (placeholder?.floating ? undefined : placeholder?.text) : placeholder}
                             onChangeText={(val) => {
                                 if (props.onChangeText) {
                                     props.onChangeText(val);

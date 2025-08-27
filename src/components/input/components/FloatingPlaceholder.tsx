@@ -1,7 +1,7 @@
 import React from "react";
+import type { ColorValue, LayoutChangeEvent, TextStyle, ViewStyle } from "react-native";
 import Animated, { Easing, SharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
-import type { ViewStyle, TextStyle, ColorValue, LayoutChangeEvent } from "react-native";
-import ThemeContext from "@/components/context/context";
+import ThemeContext from "../../context/context";
 
 interface FloatingPlaceholderProps {
     placeholder?: string;
