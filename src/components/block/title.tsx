@@ -2,24 +2,29 @@
 // @ts-expect-error
 import React, {useContext} from "react";
 import type {TitleType} from "./types";
-import {Text, View} from "react-native";
+import { StyleSheet, Text, TextStyle, View, ViewStyle } from 'react-native';
 import {margin} from "../spacing/margin";
 import {fontSize} from "vital-react-native";
 import styles from "./styles";
 import ThemeContext from "../context/context";
+import { pickMarginStyles } from './index';
 
-const {fontConfig} = useContext(ThemeContext);
+
 
 function Title(props: TitleType) {
+    const {fontConfig} = useContext(ThemeContext);
+    const titleStyle = StyleSheet.flatten(props.titleStyle) as TextStyle & ViewStyle;
     return(
-        <View style={styles.titleStyle}>
+        <View style={[styles.titleStyle]}>
             {props.titleLeft}
             <Text
                 style={[
                     fontConfig,
-                    props.blockTitleSize ?? fontSize.H6,
+                    titleStyle.fontSize ?? fontSize.H6,
                     props.titleLeft ? margin.ms2 : undefined,
-                    props.blockTitleStyle]}
+                    pickMarginStyles(titleStyle).marginEntries,
+                    pickMarginStyles(titleStyle).nonMarginEntries
+                ]}
             >
                 {props.title ?? "Title Goes Here"}
             </Text>
