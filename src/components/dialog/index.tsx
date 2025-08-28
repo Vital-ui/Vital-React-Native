@@ -14,12 +14,25 @@ import ThemeContext from "../context/context";
 import type {DialogProps} from "./types";
 import {useContext} from "react";
 import {closeModal, openModal} from "./helpers";
-import {styles} from "./styles";
+import {componentStyles} from "./styles";
 
 export default function Dialog(props: DialogProps) {
     const {theme} = useContext(ThemeContext);
     const [shown, setShown] = React.useState(false);
     const [height, setHeight] = React.useState(-30);
+    const {
+        visible,
+        onClose,
+        styles,
+        onBackDropPress,
+        header,
+        title,
+        onRequestClose,
+        children,
+        onRequestOpen,
+        actionFrom
+    } = props;
+
     if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
         UIManager.setLayoutAnimationEnabledExperimental(true);
     }
@@ -32,70 +45,70 @@ export default function Dialog(props: DialogProps) {
                 LayoutAnimation.Properties.opacity,
             ),
         );
-        if (props.visible !== undefined) {
-            setShown(props.visible);
+        if (visible !== undefined) {
+            setShown(visible);
         }
-    }, [props.visible]);
+    }, [visible]);
 
     const layout = (event: LayoutChangeEvent) => {
         const {height} = event.nativeEvent.layout;
         setHeight(-1 * height / 2);
     };
     return (
-        <View style={props.style}>
+        <View style={styles?.style}>
             <Modal
                 animationType={"none"}
                 transparent
-                visible={props.visible ?? shown}
+                visible={visible ?? shown}
                 hardwareAccelerated
                 statusBarTranslucent
             >
                 <Pressable
-                    style={styles.modal}
+                    style={componentStyles.modal}
                     onPress={
-                        props.visible !== undefined
-                            ? props.onBackDropPress ?? (() => {})
-                            : () => closeModal(setShown, props.onClose)
+                        visible !== undefined
+                            ? onBackDropPress ?? (() => {})
+                            : () => closeModal(setShown, onClose)
                     }>
                 </Pressable>
                 <View
                     onLayout={layout}
-                    style={[styles.modalContent, {
+                    style={[componentStyles.modalContent, {
                         transform: [{translateX: -Dimensions.get("screen").width * 11 / 24}, {translateY: height}],
                     }]}
                 >
-                    {props.header &&
+                    {header &&
                                 <View
-                                    style={[styles.modalHeader, {backgroundColor: props.headerColor ?? theme.Header}]}>
-                                    <View style={styles.modalHeaderText}>
-                                        {props.title}
+                                    style={[componentStyles.modalHeader, {backgroundColor: styles?.headerColor ?? theme.Header}]}>
+                                    <View style={componentStyles.modalHeaderText}>
+                                        {title}
                                     </View>
                                     <Pressable
                                         onPress={
-                                            props.visible !== undefined
-                                                ? props.onRequestClose ?? (() => {})
-                                                : () => closeModal(setShown, props.onClose)
+                                            visible !== undefined
+                                                ? onRequestClose ?? (() => {})
+                                                : () => closeModal(setShown, onClose)
                                         }
-                                        style={styles.modalHeaderBtn}
+                                        style={componentStyles.modalHeaderBtn}
                                     >
                                         <SVGClose fill={"#888888"} height={24} width={24}/>
                                     </Pressable>
                                 </View>
                     }
                     <View
-                        style={[styles.modalBody, {backgroundColor: props.bodyColor ?? theme.Body}]}>
-                        {props.children}
+                        style={[componentStyles.modalBody, {backgroundColor: styles?.bodyColor ?? theme.Body}]}>
+                        {children}
                     </View>
                 </View>
             </Modal>
             <Pressable
                 onPress={
-                    props.visible !== undefined
-                        ? props.onRequestOpen ?? (() => {})
+                    visible !== undefined
+                        ? onRequestOpen ?? (() => {})
                         : () => openModal(setShown)
                 }
-                onStartShouldSetResponderCapture={() => props.visible === undefined || !!props.onRequestOpen}>
-                {props.actionFrom}
+                onStartShouldSetResponderCapture={() => visible === undefined || !!onRequestOpen}>
+                {actionFrom}
             </Pressable>
         </View>
     );
