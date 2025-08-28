@@ -1,6 +1,6 @@
 import {StyleSheet} from "react-native";
 
-export const styles = StyleSheet.create({
+export const componentStyles = StyleSheet.create({
     thumb: {
         backgroundColor: "#fff",
         height: 21,
