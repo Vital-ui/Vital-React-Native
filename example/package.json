@@ -7,7 +7,10 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "build:android": "react-native build-android --extra-params \"--no-daemon --console=plain -PreactNativeArchitectures=arm64-v8a\"",
-    "build:ios": "react-native build-ios --scheme VitalReactNativeExample --mode Debug --extra-params \"-sdk iphonesimulator CC=clang CPLUSPLUS=clang++ LD=clang LDPLUSPLUS=clang++ GCC_OPTIMIZATION_LEVEL=0 GCC_PRECOMPILE_PREFIX_HEADER=YES ASSETCATALOG_COMPILER_OPTIMIZATION=time DEBUG_INFORMATION_FORMAT=dwarf COMPILER_INDEX_STORE_ENABLE=NO\""
+    "build:ios": "react-native build-ios --scheme VitalReactNativeExample --mode Debug --extra-params \"-sdk iphonesimulator CC=clang CPLUSPLUS=clang++ LD=clang LDPLUSPLUS=clang++ GCC_OPTIMIZATION_LEVEL=0 GCC_PRECOMPILE_PREFIX_HEADER=YES ASSETCATALOG_COMPILER_OPTIMIZATION=time DEBUG_INFORMATION_FORMAT=dwarf COMPILER_INDEX_STORE_ENABLE=NO\"",
+    "clean:android": "cd android && ./gradlew clean && cd ..",
+    "emulator:android": "emulator -list-avds && nohup emulator -avd $(emulator -list-avds | head -n 1) >/dev/null 2>&1 &",
+    "android:clean-rebuild": "rm -rf android/.gradle android/.cxx node_modules && yarn install && cd android && ./gradlew clean && cd .. && yarn android"
   },
   "dependencies": {
     "@react-native-masked-view/masked-view": "^0.3.2",
